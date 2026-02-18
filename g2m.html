@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G²M — Greenfield Growth Momentum</title>
+    <meta name="description" content="Greenfield Growth Momentum — After product-market fit, the limiting factor is rarely the product. It's execution.">
+
+    <!-- Google Fonts: Manrope -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- GSAP + ScrollTrigger + ScrollToPlugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+
+    <!-- Shared base styles + G2M-specific styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="g2m.css">
+</head>
+<body>
+
+    <!-- ============================== -->
+    <!-- NAVIGATION -->
+    <!-- ============================== -->
+    <header class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo" aria-label="Greenfield Partners Home">
+                <svg width="156" height="32" viewBox="0 0 156 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M25.0404 4.8001V4.2751C25.0404 4.1751 24.972 4.1001 24.8808 4.1001H3.89987C3.80865 4.1001 3.74023 4.1751 3.74023 4.2751V27.5251C3.74023 27.6001 3.78585 27.6751 3.83146 27.7001C3.85426 27.7001 3.87707 27.7001 3.89987 27.7001C3.94548 27.7001 25.0632 27.7001 25.1088 27.7001C25.1316 27.7001 25.1544 27.7001 25.1772 27.7001C25.2457 27.6751 25.2685 27.6001 25.2685 27.5251V15.5001C25.2685 15.4001 25.2001 15.3251 25.1088 15.3251H24.6299C24.5387 15.3251 24.4703 15.4001 24.4703 15.5001V26.8751H4.56123V4.9751H24.9036C24.972 4.9751 25.0404 4.9001 25.0404 4.8001Z" fill="white"/>
+                    <path d="M8.27866 9.0752H21.1409C21.2321 9.0752 21.3006 9.00022 21.3006 8.90022V8.37522C21.3006 8.27522 21.2321 8.2002 21.1409 8.2002H7.64011C7.54889 8.2002 7.48047 8.27522 7.48047 8.37522V23.4502C7.48047 23.5252 7.52608 23.6002 7.57169 23.6252C7.5945 23.6252 7.6173 23.6252 7.64011 23.6252C7.68572 23.6252 21.3462 23.6252 21.3918 23.6252C21.4146 23.6252 21.4374 23.6252 21.4602 23.6252C21.5286 23.6002 21.5514 23.5252 21.5514 23.4502V15.4752C21.5514 15.3752 21.483 15.3002 21.3918 15.3002H20.9129C20.8216 15.3002 20.7532 15.3752 20.7532 15.4752V22.8002H8.27866V9.0752Z" fill="white"/>
+                    <path d="M28.8489 15.3H28.3699C28.2787 15.3 28.2103 15.375 28.2103 15.475V30.975H0.79819V0.875H28.598C28.6892 0.875 28.7576 0.799998 28.7576 0.699998V0.175003C28.7576 0.075003 28.6892 0 28.598 0H0.159637C0.0684156 0 0 0.075003 0 0.175003V31.625C0 31.7 0.0456095 31.775 0.0912203 31.8C0.114026 31.8 0.136832 31.8 0.159637 31.8C0.205248 31.8 28.8033 31.8 28.8489 31.8C28.8717 31.8 28.8945 31.8 28.9173 31.8C28.9857 31.775 29.0085 31.7 29.0085 31.625V15.475C29.0085 15.375 28.9401 15.3 28.8489 15.3Z" fill="white"/>
+                    <path d="M48.3932 15.905H52.6578V16.63C52.6578 19.48 51.1754 21.355 48.6212 21.355C45.8618 21.355 44.1514 19.18 44.1514 16.43C44.1514 13.655 45.9074 11.48 48.6668 11.48C50.879 11.48 51.8596 12.705 51.8596 12.705L51.1526 13.705C51.1526 13.705 50.2404 12.705 48.6668 12.705C46.6372 12.705 45.3601 14.355 45.3601 16.43C45.3601 18.48 46.5687 20.13 48.5984 20.13C50.286 20.13 51.4035 18.93 51.4491 17.18V17.055H48.416V15.905H48.3932Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M64.721 14.8801C64.721 16.3801 63.9685 17.3801 62.7826 17.8301V17.9051L65.0175 20.9051V21.1551H63.7176L61.4599 18.0801H58.8372V21.1551H57.6514V11.7051H61.2546C63.3983 11.7051 64.721 12.8301 64.721 14.8801ZM61.2318 12.8801H58.8372V16.9051H61.3458C62.6001 16.9051 63.4896 16.2801 63.4896 14.9051C63.4896 13.5551 62.6001 12.8801 61.2318 12.8801Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M75.7818 17.0552H71.2435V19.9552H76.4659V21.1302H70.0576V11.6802H76.4659V12.8552H71.2435V15.8802H75.7818V17.0552Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M87.5718 17.0549H83.0335V19.9549H88.256V21.1299H81.8477V11.6799H88.256V12.8549H83.0335V15.8799H87.5718V17.0549Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M101.209 21.1551H100.89L94.7777 14.3801V21.1551H93.5918V11.7051H93.9111L100 18.4051V11.7051H101.186V21.1551H101.209Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M106.661 11.7051H113.069V12.8801H107.847V15.9051H112.431V17.0551H107.847V21.1551H106.661V11.7051Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M119.18 21.1551H117.994V11.7051H119.18V21.1551Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M130.104 17.0552H125.566V19.9552H130.788V21.1302H124.38V11.6802H130.788V12.8552H125.566V15.8802H130.104V17.0552Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M136.011 21.1551V11.7051H137.197V19.9551H142.123V21.1301H136.011V21.1551Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M150.059 21.1551H146.98V11.7051H150.059C152.796 11.7051 154.643 13.5551 154.643 16.4301C154.643 19.3051 152.819 21.1551 150.059 21.1551ZM148.166 12.8801V19.9551H149.991C151.952 19.9551 153.457 18.6551 153.457 16.4051C153.457 14.1551 151.975 12.8551 149.991 12.8551H148.166V12.8801Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                </svg>
+            </a>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html#approach" class="nav-link">Investment Approach</a>
+                <a href="g2m.html" class="nav-link nav-link-active">G<sup>2</sup>M</a>
+                <a href="index.html#companies" class="nav-link">Companies</a>
+                <a href="#team" class="nav-link">Team</a>
+                <a href="#knowledge" class="nav-link">KnowledgeHub</a>
+                <a href="#careers" class="nav-link">Careers</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="#follow" class="btn-cta">
+                    <span class="btn-cta-text">Follow Us</span>
+                    <span class="btn-cta-icon">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </a>
+                <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-inner">
+            <a href="index.html#approach" class="mobile-menu-link">Investment Approach</a>
+            <a href="g2m.html" class="mobile-menu-link">G<sup>2</sup>M</a>
+            <a href="index.html#companies" class="mobile-menu-link">Companies</a>
+            <a href="#team" class="mobile-menu-link">Team</a>
+            <a href="#knowledge" class="mobile-menu-link">KnowledgeHub</a>
+            <a href="#careers" class="mobile-menu-link">Careers</a>
+            <a href="#follow" class="btn-cta mobile-cta">
+                <span class="btn-cta-text">Follow Us</span>
+                <span class="btn-cta-icon">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- G2M HERO -->
+    <!-- ============================== -->
+    <section class="g2m-hero" id="g2m-hero">
+        <div class="g2m-hero-bg">
+            <div class="g2m-hero-bg-image" style="background-image: url('assets/G2M/hero-background-2.png')"></div>
+            <div class="g2m-hero-bg-overlay"></div>
+            <div class="g2m-hero-bg-grain"></div>
+        </div>
+
+        <div class="g2m-hero-content">
+            <h1 class="g2m-hero-title">
+                <span class="g2m-hero-title-line">
+                    <span class="g2m-hero-title-word" data-word>G</span><span class="g2m-hero-title-super" data-word><sup>2</sup></span><span class="g2m-hero-title-word" data-word>M</span>
+                </span>
+            </h1>
+            <h2 class="g2m-hero-subtitle">Greenfield Growth Momentum</h2>
+            <div class="g2m-hero-divider"></div>
+            <p class="g2m-hero-desc">After product-market fit, the limiting factor is rarely the product.</p>
+            <p class="g2m-hero-emphasis">It's execution.</p>
+        </div>
+
+        <div class="g2m-hero-scroll">
+            <div class="g2m-hero-scroll-line"></div>
+            <span class="g2m-hero-scroll-text">Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- G2M THESIS — Scaling Reality -->
+    <!-- ============================== -->
+    <section class="g2m-thesis" id="g2m-thesis">
+        <div class="g2m-thesis-inner">
+
+            <!-- LEFT COLUMN: Text content -->
+            <div class="g2m-thesis-text">
+                <h2 class="g2m-thesis-heading">
+                    Most Companies Don't Fail from Lack of Demand.
+                    <br>They Fail from Scaling Too Fast.
+                </h2>
+                <div class="g2m-thesis-divider"></div>
+                <div class="g2m-thesis-body">
+                    <p>
+                        Many companies attempt to scale before their GTM foundations are stable and get pulled into the
+                        <span class="g2m-highlight-orange">near-term trap</span>: chasing short-term targets without
+                        creating the infrastructure for sustainable growth.
+                    </p>
+                    <p>
+                        The transition from <span class="g2m-highlight-teal">product–market fit</span> to
+                        <span class="g2m-highlight-teal">scalable growth</span> is where most venture-backed companies
+                        stall as <span class="g2m-highlight-teal g2m-highlight-italic">they fail to industrialize GTM</span>.
+                    </p>
+                    <p>We help companies avoid that.</p>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Survival Rate Chart -->
+            <div class="g2m-chart-card" id="g2mChart">
+                <h3 class="g2m-chart-title">Survival Rate of VC-Backed Startups</h3>
+
+                <!-- Chart area — all bars + gaps positioned absolutely by JS -->
+                <div class="g2m-chart-area" id="g2mChartArea">
+                    <!-- SVG ARR curve overlay (desktop only) -->
+                    <svg class="g2m-arr-curve" viewBox="0 0 400 200" preserveAspectRatio="none">
+                        <path d="M 60 195 C 100 190, 140 180, 170 160 C 200 140, 230 100, 280 50 C 310 20, 340 5, 370 2"
+                              fill="none" stroke="#011132" stroke-width="2.5"
+                              stroke-dasharray="8 4" stroke-linecap="round"/>
+                        <text x="372" y="14" fill="#011132" font-size="11" font-weight="600" text-anchor="middle">ARR</text>
+                    </svg>
+                    <!-- Bars & gaps injected by JS -->
+                </div>
+
+                <!-- X-axis labels -->
+                <div class="g2m-chart-labels" id="g2mChartLabels"></div>
+
+                <!-- Legend -->
+                <div class="g2m-chart-legend">
+                    <div class="g2m-legend-item">
+                        <div class="g2m-legend-swatch g2m-legend-cohort"></div>
+                        <span>Cohort</span>
+                    </div>
+                    <div class="g2m-legend-item">
+                        <div class="g2m-legend-swatch g2m-legend-stalled"></div>
+                        <span>Stalled</span>
+                    </div>
+                    <div class="g2m-legend-item g2m-legend-arr-item">
+                        <div class="g2m-legend-arr-line"></div>
+                        <span>ARR Growth</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- G2M MISSION BANNER -->
+    <!-- ============================== -->
+    <section class="g2m-mission" id="g2m-mission">
+        <div class="g2m-mission-bg">
+            <div class="g2m-mission-bg-image" style="background-image: url('assets/G2M/mission-banner-bg.png')"></div>
+            <div class="g2m-mission-bg-overlay"></div>
+        </div>
+        <div class="g2m-mission-content">
+            <div class="g2m-mission-accent"></div>
+            <p class="g2m-mission-text">
+                Our <span class="g2m-mission-bold">G<sup>2</sup>M platform</span> exists to help companies
+                build a <span class="g2m-mission-em-teal">scalable, efficient GTM engine</span>
+                and bridge the <span class="g2m-mission-highlight">Growth Chasm</span> between
+                <span class="g2m-mission-bold">early traction</span> and
+                <span class="g2m-mission-em-blue">durable growth</span>.
+            </p>
+        </div>
+    </section>
+
+    <script src="g2m.js"></script>
+</body>
+</html>
