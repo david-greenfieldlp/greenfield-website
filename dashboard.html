@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenfield Partners — Dashboard</title>
+    <meta name="description" content="Greenfield Partners is a venture capital fund investing globally at the early growth stage. Scaling the Inevitable.">
+
+    <!-- Google Fonts: Manrope -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- GSAP (no ScrollTrigger/Lenis — single viewport, no scrolling) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <!-- Shared base styles + Dashboard-specific -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="dashboard-body">
+
+    <!-- ============================== -->
+    <!-- NAVIGATION -->
+    <!-- ============================== -->
+    <header class="nav nav-dashboard" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo" aria-label="Greenfield Partners Home">
+                <svg width="156" height="32" viewBox="0 0 156 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M25.0404 4.8001V4.2751C25.0404 4.1751 24.972 4.1001 24.8808 4.1001H3.89987C3.80865 4.1001 3.74023 4.1751 3.74023 4.2751V27.5251C3.74023 27.6001 3.78585 27.6751 3.83146 27.7001C3.85426 27.7001 3.87707 27.7001 3.89987 27.7001C3.94548 27.7001 25.0632 27.7001 25.1088 27.7001C25.1316 27.7001 25.1544 27.7001 25.1772 27.7001C25.2457 27.6751 25.2685 27.6001 25.2685 27.5251V15.5001C25.2685 15.4001 25.2001 15.3251 25.1088 15.3251H24.6299C24.5387 15.3251 24.4703 15.4001 24.4703 15.5001V26.8751H4.56123V4.9751H24.9036C24.972 4.9751 25.0404 4.9001 25.0404 4.8001Z" fill="white"/>
+                    <path d="M8.27866 9.0752H21.1409C21.2321 9.0752 21.3006 9.00022 21.3006 8.90022V8.37522C21.3006 8.27522 21.2321 8.2002 21.1409 8.2002H7.64011C7.54889 8.2002 7.48047 8.27522 7.48047 8.37522V23.4502C7.48047 23.5252 7.52608 23.6002 7.57169 23.6252C7.5945 23.6252 7.6173 23.6252 7.64011 23.6252C7.68572 23.6252 21.3462 23.6252 21.3918 23.6252C21.4146 23.6252 21.4374 23.6252 21.4602 23.6252C21.5286 23.6002 21.5514 23.5252 21.5514 23.4502V15.4752C21.5514 15.3752 21.483 15.3002 21.3918 15.3002H20.9129C20.8216 15.3002 20.7532 15.3752 20.7532 15.4752V22.8002H8.27866V9.0752Z" fill="white"/>
+                    <path d="M28.8489 15.3H28.3699C28.2787 15.3 28.2103 15.375 28.2103 15.475V30.975H0.79819V0.875H28.598C28.6892 0.875 28.7576 0.799998 28.7576 0.699998V0.175003C28.7576 0.075003 28.6892 0 28.598 0H0.159637C0.0684156 0 0 0.075003 0 0.175003V31.625C0 31.7 0.0456095 31.775 0.0912203 31.8C0.114026 31.8 0.136832 31.8 0.159637 31.8C0.205248 31.8 28.8033 31.8 28.8489 31.8C28.8717 31.8 28.8945 31.8 28.9173 31.8C28.9857 31.775 29.0085 31.7 29.0085 31.625V15.475C29.0085 15.375 28.9401 15.3 28.8489 15.3Z" fill="white"/>
+                    <path d="M48.3932 15.905H52.6578V16.63C52.6578 19.48 51.1754 21.355 48.6212 21.355C45.8618 21.355 44.1514 19.18 44.1514 16.43C44.1514 13.655 45.9074 11.48 48.6668 11.48C50.879 11.48 51.8596 12.705 51.8596 12.705L51.1526 13.705C51.1526 13.705 50.2404 12.705 48.6668 12.705C46.6372 12.705 45.3601 14.355 45.3601 16.43C45.3601 18.48 46.5687 20.13 48.5984 20.13C50.286 20.13 51.4035 18.93 51.4491 17.18V17.055H48.416V15.905H48.3932Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M64.721 14.8801C64.721 16.3801 63.9685 17.3801 62.7826 17.8301V17.9051L65.0175 20.9051V21.1551H63.7176L61.4599 18.0801H58.8372V21.1551H57.6514V11.7051H61.2546C63.3983 11.7051 64.721 12.8301 64.721 14.8801ZM61.2318 12.8801H58.8372V16.9051H61.3458C62.6001 16.9051 63.4896 16.2801 63.4896 14.9051C63.4896 13.5551 62.6001 12.8801 61.2318 12.8801Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M75.7818 17.0552H71.2435V19.9552H76.4659V21.1302H70.0576V11.6802H76.4659V12.8552H71.2435V15.8802H75.7818V17.0552Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M87.5718 17.0549H83.0335V19.9549H88.256V21.1299H81.8477V11.6799H88.256V12.8549H83.0335V15.8799H87.5718V17.0549Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M101.209 21.1551H100.89L94.7777 14.3801V21.1551H93.5918V11.7051H93.9111L100 18.4051V11.7051H101.186V21.1551H101.209Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M106.661 11.7051H113.069V12.8801H107.847V15.9051H112.431V17.0551H107.847V21.1551H106.661V11.7051Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M119.18 21.1551H117.994V11.7051H119.18V21.1551Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M130.104 17.0552H125.566V19.9552H130.788V21.1302H124.38V11.6802H130.788V12.8552H125.566V15.8802H130.104V17.0552Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M136.011 21.1551V11.7051H137.197V19.9551H142.123V21.1301H136.011V21.1551Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M150.059 21.1551H146.98V11.7051H150.059C152.796 11.7051 154.643 13.5551 154.643 16.4301C154.643 19.3051 152.819 21.1551 150.059 21.1551ZM148.166 12.8801V19.9551H149.991C151.952 19.9551 153.457 18.6551 153.457 16.4051C153.457 14.1551 151.975 12.8551 149.991 12.8551H148.166V12.8801Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                </svg>
+            </a>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html#approach" class="nav-link">Investment Approach</a>
+                <a href="g2m.html" class="nav-link">G<sup>2</sup>M</a>
+                <a href="index.html#companies" class="nav-link">Companies</a>
+                <a href="#team" class="nav-link">Team</a>
+                <a href="#knowledge" class="nav-link">KnowledgeHub</a>
+                <a href="#careers" class="nav-link">Careers</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="#follow" class="btn-cta">
+                    <span class="btn-cta-text">Follow Us</span>
+                    <span class="btn-cta-icon">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </a>
+                <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-inner">
+            <a href="index.html#approach" class="mobile-menu-link">Investment Approach</a>
+            <a href="g2m.html" class="mobile-menu-link">G<sup>2</sup>M</a>
+            <a href="index.html#companies" class="mobile-menu-link">Companies</a>
+            <a href="#team" class="mobile-menu-link">Team</a>
+            <a href="#knowledge" class="mobile-menu-link">KnowledgeHub</a>
+            <a href="#careers" class="mobile-menu-link">Careers</a>
+            <a href="#follow" class="btn-cta mobile-cta">
+                <span class="btn-cta-text">Follow Us</span>
+                <span class="btn-cta-icon">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- DASHBOARD MAIN -->
+    <!-- ============================== -->
+    <main class="dashboard-main">
+        <div class="dashboard-content">
+
+            <!-- ===== TOP ROW (70% height) ===== -->
+            <div class="dashboard-top">
+
+                <!-- LEFT 30%: Headline -->
+                <div class="dashboard-headline">
+                    <div class="dashboard-headline-inner">
+                        <h1 class="dashboard-headline-text">
+                            We Partner with<br>
+                            Exceptional Technology Companies
+                            <span class="dashboard-headline-accent">globally</span>
+                            at the
+                            <span class="dashboard-headline-accent">Early&#8209;Growth Stage</span>
+                        </h1>
+                        <a href="index.html#approach" class="dashboard-headline-btn">
+                            <span>Investment Approach</span>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- RIGHT 70%: Bento Portfolio Grid -->
+                <div class="dashboard-bento">
+                    <div class="bento-grid dashboard-bento-grid">
+                        <!-- Card 1 — VAST Data (Large featured) -->
+                        <div class="bento-card bento-card-featured" data-category="ai-infra">
+                            <div class="bento-card-bg bento-card-bg-img" style="background-image: url('assets/portfolio bgs/vast bg.png')"></div>
+                            <div class="bento-card-bg-overlay"></div>
+                            <div class="bento-card-glow"></div>
+                            <div class="bento-card-content">
+                                <div class="bento-card-top">
+                                    <div class="bento-card-icon">
+                                        <img src="assets/Favicons/vast favicon.png" alt="VAST Data" class="bento-card-logo-img">
+                                    </div>
+                                    <span class="bento-card-tag">AI Infrastructure</span>
+                                </div>
+                                <div class="bento-card-bottom">
+                                    <h3 class="bento-card-name">VAST Data</h3>
+                                    <p class="bento-card-desc">The Data Platform Company for the AI Era</p>
+                                    <div class="bento-card-meta">
+                                        <span class="bento-card-stage">Led Series B</span>
+                                        <span class="bento-card-divider">&middot;</span>
+                                        <span class="bento-card-location">2019</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bento-card-hover-line"></div>
+                        </div>
+
+                        <!-- Card 2 — Coralogix -->
+                        <div class="bento-card" data-category="it-infra">
+                            <div class="bento-card-bg bento-card-bg-img" style="background-image: url('assets/portfolio bgs/coralogix bg.png')"></div>
+                            <div class="bento-card-bg-overlay"></div>
+                            <div class="bento-card-glow"></div>
+                            <div class="bento-card-content">
+                                <div class="bento-card-top">
+                                    <div class="bento-card-icon">
+                                        <img src="assets/Coralogix/cropped-cropped-favicon-192x192.png" alt="Coralogix" class="bento-card-logo-img">
+                                    </div>
+                                    <span class="bento-card-tag">IT Infrastructure</span>
+                                </div>
+                                <div class="bento-card-bottom">
+                                    <h3 class="bento-card-name">Coralogix</h3>
+                                    <p class="bento-card-desc">Observability and Security that Scale with You</p>
+                                    <div class="bento-card-meta">
+                                        <span class="bento-card-stage">Led Series B</span>
+                                        <span class="bento-card-divider">&middot;</span>
+                                        <span class="bento-card-location">2021</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bento-card-hover-line"></div>
+                        </div>
+
+                        <!-- Card 3 — Exodigo -->
+                        <div class="bento-card" data-category="deep-tech">
+                            <div class="bento-card-bg bento-card-bg-img" style="background-image: url('assets/portfolio bgs/exodigo bg.png')"></div>
+                            <div class="bento-card-bg-overlay"></div>
+                            <div class="bento-card-glow"></div>
+                            <div class="bento-card-content">
+                                <div class="bento-card-top">
+                                    <div class="bento-card-icon">
+                                        <img src="assets/Favicons/exodigo favicon.png" alt="Exodigo" class="bento-card-logo-img">
+                                    </div>
+                                    <span class="bento-card-tag">Deep Tech</span>
+                                </div>
+                                <div class="bento-card-bottom">
+                                    <h3 class="bento-card-name">Exodigo</h3>
+                                    <p class="bento-card-desc">Non-Intrusive Underground Mapping</p>
+                                    <div class="bento-card-meta">
+                                        <span class="bento-card-stage">Led Series A</span>
+                                        <span class="bento-card-divider">&middot;</span>
+                                        <span class="bento-card-location">2023</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bento-card-hover-line"></div>
+                        </div>
+
+                        <!-- Bottom row — 4 equal cards -->
+                        <div class="bento-row-four">
+                            <!-- Card 4 — RobCo -->
+                            <div class="bento-card" data-category="deep-tech">
+                                <div class="bento-card-bg bento-card-bg-img" style="background-image: url('assets/portfolio bgs/robco bg.png')"></div>
+                                <div class="bento-card-bg-overlay"></div>
+                                <div class="bento-card-glow"></div>
+                                <div class="bento-card-content">
+                                    <div class="bento-card-top">
+                                        <div class="bento-card-icon">
+                                            <img src="assets/Favicons/robco favicon.png" alt="RobCo" class="bento-card-logo-img">
+                                        </div>
+                                        <span class="bento-card-tag">Deep Tech</span>
+                                    </div>
+                                    <div class="bento-card-bottom">
+                                        <h3 class="bento-card-name">RobCo</h3>
+                                        <p class="bento-card-desc">The Robot Company centered on Software and AI</p>
+                                        <div class="bento-card-meta">
+                                            <span class="bento-card-stage">Series C</span>
+                                            <span class="bento-card-divider">&middot;</span>
+                                            <span class="bento-card-location">2026</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bento-card-hover-line"></div>
+                            </div>
+
+                            <!-- Card 5 — Torq -->
+                            <div class="bento-card" data-category="cybersecurity">
+                                <div class="bento-card-bg bento-card-bg-img" style="background-image: url('assets/portfolio bgs/torq bg.png')"></div>
+                                <div class="bento-card-bg-overlay"></div>
+                                <div class="bento-card-glow"></div>
+                                <div class="bento-card-content">
+                                    <div class="bento-card-top">
+                                        <div class="bento-card-icon">
+                                            <img src="assets/Favicons/torq favicon.png" alt="Torq" class="bento-card-logo-img">
+                                        </div>
+                                        <span class="bento-card-tag">Cybersecurity</span>
+                                    </div>
+                                    <div class="bento-card-bottom">
+                                        <h3 class="bento-card-name">Torq</h3>
+                                        <p class="bento-card-desc">The AI-Native Hyperautomation Platform for Security Teams</p>
+                                        <div class="bento-card-meta">
+                                            <span class="bento-card-stage">Led Series B</span>
+                                            <span class="bento-card-divider">&middot;</span>
+                                            <span class="bento-card-location">2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bento-card-hover-line"></div>
+                            </div>
+
+                            <!-- Card 6 — AAI -->
+                            <div class="bento-card" data-category="aai">
+                                <div class="bento-card-bg bento-card-bg-img" style="background-image: url('assets/portfolio bgs/aai bg.png')"></div>
+                                <div class="bento-card-bg-overlay"></div>
+                                <div class="bento-card-glow"></div>
+                                <div class="bento-card-content">
+                                    <div class="bento-card-top">
+                                        <div class="bento-card-icon">
+                                            <img src="assets/Favicons/AAI favicon.png" alt="AAI" class="bento-card-logo-img">
+                                        </div>
+                                        <span class="bento-card-tag">AI Infrastructure</span>
+                                    </div>
+                                    <div class="bento-card-bottom">
+                                        <h3 class="bento-card-name">AAI</h3>
+                                        <p class="bento-card-desc">Cracking the Code of Superintelligence</p>
+                                        <div class="bento-card-meta">
+                                            <span class="bento-card-stage">Series A</span>
+                                            <span class="bento-card-divider">&middot;</span>
+                                            <span class="bento-card-location">2025</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bento-card-hover-line"></div>
+                            </div>
+
+                            <!-- Card 7 — Silverfort -->
+                            <div class="bento-card" data-category="cybersecurity">
+                                <div class="bento-card-bg bento-card-bg-img" style="background-image: url('assets/portfolio bgs/silverfort bg.png')"></div>
+                                <div class="bento-card-bg-overlay"></div>
+                                <div class="bento-card-glow"></div>
+                                <div class="bento-card-content">
+                                    <div class="bento-card-top">
+                                        <div class="bento-card-icon">
+                                            <img src="assets/Favicons/silverfort favicon.png" alt="Silverfort" class="bento-card-logo-img">
+                                        </div>
+                                        <span class="bento-card-tag">Cybersecurity</span>
+                                    </div>
+                                    <div class="bento-card-bottom">
+                                        <h3 class="bento-card-name">Silverfort</h3>
+                                        <p class="bento-card-desc">Where Identity Security has Never Gone Before</p>
+                                        <div class="bento-card-meta">
+                                            <span class="bento-card-stage">Led Series C</span>
+                                            <span class="bento-card-divider">&middot;</span>
+                                            <span class="bento-card-location">2022</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bento-card-hover-line"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-bento-footer">
+                        <a href="index.html#companies" class="dashboard-view-all">
+                            View All Companies
+                            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== BOTTOM ROW (30% height) ===== -->
+            <div class="dashboard-bottom">
+
+                <!-- LEFT: World Clocks -->
+                <div class="dashboard-clocks">
+                    <div class="clock-item" data-timezone="America/New_York">
+                        <div class="clock-face">
+                            <svg class="clock-svg" viewBox="0 0 100 100">
+                                <!-- Tick marks -->
+                                <g class="clock-ticks" stroke="rgba(255,255,255,0.15)" stroke-width="1">
+                                    <line x1="50" y1="8" x2="50" y2="14" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(30 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(60 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(90 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(120 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(150 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(180 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(210 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(240 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(270 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(300 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(330 50 50)" />
+                                </g>
+                                <!-- Cardinal ticks (12, 3, 6, 9) -->
+                                <g class="clock-ticks-cardinal" stroke="rgba(255,255,255,0.35)" stroke-width="1.5">
+                                    <line x1="50" y1="6" x2="50" y2="14" />
+                                    <line x1="50" y1="6" x2="50" y2="14" transform="rotate(90 50 50)" />
+                                    <line x1="50" y1="6" x2="50" y2="14" transform="rotate(180 50 50)" />
+                                    <line x1="50" y1="6" x2="50" y2="14" transform="rotate(270 50 50)" />
+                                </g>
+                                <!-- Ring -->
+                                <circle class="clock-ring" cx="50" cy="50" r="45" />
+                                <!-- Hands -->
+                                <line class="clock-hand clock-hand-hour" x1="50" y1="50" x2="50" y2="26" />
+                                <line class="clock-hand clock-hand-minute" x1="50" y1="50" x2="50" y2="18" />
+                                <line class="clock-hand clock-hand-second" x1="50" y1="50" x2="50" y2="14" />
+                                <!-- Center dot -->
+                                <circle class="clock-center-dot" cx="50" cy="50" r="2.5" />
+                            </svg>
+                        </div>
+                        <span class="clock-city">New York</span>
+                        <span class="clock-time" id="clock-ny">--:--</span>
+                    </div>
+
+                    <div class="clock-item" data-timezone="Asia/Jerusalem">
+                        <div class="clock-face">
+                            <svg class="clock-svg" viewBox="0 0 100 100">
+                                <g class="clock-ticks" stroke="rgba(255,255,255,0.15)" stroke-width="1">
+                                    <line x1="50" y1="8" x2="50" y2="14" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(30 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(60 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(90 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(120 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(150 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(180 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(210 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(240 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(270 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(300 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(330 50 50)" />
+                                </g>
+                                <g class="clock-ticks-cardinal" stroke="rgba(255,255,255,0.35)" stroke-width="1.5">
+                                    <line x1="50" y1="6" x2="50" y2="14" />
+                                    <line x1="50" y1="6" x2="50" y2="14" transform="rotate(90 50 50)" />
+                                    <line x1="50" y1="6" x2="50" y2="14" transform="rotate(180 50 50)" />
+                                    <line x1="50" y1="6" x2="50" y2="14" transform="rotate(270 50 50)" />
+                                </g>
+                                <circle class="clock-ring" cx="50" cy="50" r="45" />
+                                <line class="clock-hand clock-hand-hour" x1="50" y1="50" x2="50" y2="26" />
+                                <line class="clock-hand clock-hand-minute" x1="50" y1="50" x2="50" y2="18" />
+                                <line class="clock-hand clock-hand-second" x1="50" y1="50" x2="50" y2="14" />
+                                <circle class="clock-center-dot" cx="50" cy="50" r="2.5" />
+                            </svg>
+                        </div>
+                        <span class="clock-city">Tel Aviv</span>
+                        <span class="clock-time" id="clock-tlv">--:--</span>
+                    </div>
+
+                    <div class="clock-item" data-timezone="Europe/London">
+                        <div class="clock-face">
+                            <svg class="clock-svg" viewBox="0 0 100 100">
+                                <g class="clock-ticks" stroke="rgba(255,255,255,0.15)" stroke-width="1">
+                                    <line x1="50" y1="8" x2="50" y2="14" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(30 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(60 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(90 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(120 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(150 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(180 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(210 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(240 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(270 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(300 50 50)" />
+                                    <line x1="50" y1="8" x2="50" y2="14" transform="rotate(330 50 50)" />
+                                </g>
+                                <g class="clock-ticks-cardinal" stroke="rgba(255,255,255,0.35)" stroke-width="1.5">
+                                    <line x1="50" y1="6" x2="50" y2="14" />
+                                    <line x1="50" y1="6" x2="50" y2="14" transform="rotate(90 50 50)" />
+                                    <line x1="50" y1="6" x2="50" y2="14" transform="rotate(180 50 50)" />
+                                    <line x1="50" y1="6" x2="50" y2="14" transform="rotate(270 50 50)" />
+                                </g>
+                                <circle class="clock-ring" cx="50" cy="50" r="45" />
+                                <line class="clock-hand clock-hand-hour" x1="50" y1="50" x2="50" y2="26" />
+                                <line class="clock-hand clock-hand-minute" x1="50" y1="50" x2="50" y2="18" />
+                                <line class="clock-hand clock-hand-second" x1="50" y1="50" x2="50" y2="14" />
+                                <circle class="clock-center-dot" cx="50" cy="50" r="2.5" />
+                            </svg>
+                        </div>
+                        <span class="clock-city">London</span>
+                        <span class="clock-time" id="clock-ldn">--:--</span>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Metrics/Stats -->
+                <div class="dashboard-stats">
+                    <div class="dashboard-stats-inner">
+                        <div class="dashboard-stat">
+                            <div class="hero-stat-value">
+                                <span class="hero-stat-number" data-count="23">0</span>
+                            </div>
+                            <span class="hero-stat-label">Portfolio<br>Companies</span>
+                        </div>
+                        <div class="dashboard-stat">
+                            <div class="hero-stat-value">
+                                <span class="hero-stat-prefix">$</span><span class="hero-stat-number" data-count="1">0</span><span class="hero-stat-suffix">B+</span>
+                            </div>
+                            <span class="hero-stat-label">Assets Under<br>Management</span>
+                        </div>
+                        <div class="dashboard-stat">
+                            <div class="hero-stat-value">
+                                <span class="hero-stat-prefix">$</span><span class="hero-stat-number" data-count="12">0</span><span class="hero-stat-suffix">B</span>
+                            </div>
+                            <span class="hero-stat-label">Enterprise<br>Value Created</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
