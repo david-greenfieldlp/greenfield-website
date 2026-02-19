@@ -1,0 +1,448 @@
+/* ============================================
+   DASHBOARD V1 — Left sidebar, full-height bento right
+   ============================================ */
+
+.dashboard-body { height: 100vh; overflow: hidden; }
+
+.dashboard-main {
+    height: 100vh;
+    overflow: hidden;
+    padding-top: 80px;
+    background: var(--navy-deep);
+    position: relative;
+}
+
+/* Background texture */
+.dashboard-main::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ccircle cx='1' cy='1' r='1' fill='rgba(255,255,255,0.18)'/%3E%3C/svg%3E");
+    background-size: 28px 28px;
+    opacity: 0.12;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 40%, transparent 100%);
+}
+
+.dashboard-main::after {
+    content: '';
+    position: absolute;
+    top: -10%; right: -5%;
+    width: 70%; height: 80%;
+    background: radial-gradient(ellipse at 70% 30%, rgba(74, 144, 217, 0.06) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Nav */
+.nav-dashboard {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+}
+
+/* ---------- LAYOUT: two columns ---------- */
+.v1-layout {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- LEFT COLUMN ---------- */
+.v1-left {
+    display: flex;
+    flex-direction: column;
+    padding: 40px var(--container-pad) 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.04);
+    height: 100%;
+    margin-left: 60px;
+}
+
+.v1-headline {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 24px;
+    padding-bottom: 8px;
+    padding-top: 40px;
+}
+
+.v1-headline-text {
+    font-family: var(--font);
+    font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+    font-weight: 300;
+    line-height: 1.55;
+    letter-spacing: -0.02em;
+    color: var(--white);
+}
+
+.v1-accent {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent-blue);
+}
+
+/* ── CTA Button: Why Partner with Us ── */
+.v1-cta-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    border-radius: 100px;
+    text-decoration: none;
+    overflow: hidden;
+    isolation: isolate;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.v1-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 32px rgba(74, 144, 217, 0.35),
+        0 2px 8px rgba(74, 144, 217, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Solid dark base with blue tint */
+.v1-cta-bg {
+    position: absolute;
+    inset: 0;
+    border-radius: 100px;
+    background: linear-gradient(
+        135deg,
+        rgba(74, 144, 217, 0.22) 0%,
+        rgba(30, 60, 120, 0.35) 50%,
+        rgba(74, 144, 217, 0.18) 100%
+    );
+    border: 1px solid rgba(74, 144, 217, 0.45);
+    transition: background 0.4s ease, border-color 0.4s ease;
+    z-index: 0;
+}
+
+.v1-cta-btn:hover .v1-cta-bg {
+    background: linear-gradient(
+        135deg,
+        rgba(74, 144, 217, 0.38) 0%,
+        rgba(30, 60, 140, 0.55) 50%,
+        rgba(74, 144, 217, 0.32) 100%
+    );
+    border-color: rgba(74, 144, 217, 0.75);
+}
+
+/* Shimmer sweep on hover */
+.v1-cta-shimmer {
+    position: absolute;
+    inset: 0;
+    border-radius: 100px;
+    background: linear-gradient(
+        105deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.12) 50%,
+        transparent 70%
+    );
+    transform: translateX(-100%);
+    z-index: 1;
+    transition: none;
+}
+
+.v1-cta-btn:hover .v1-cta-shimmer {
+    animation: ctaShimmer 0.55s ease-out forwards;
+}
+
+@keyframes ctaShimmer {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(160%); }
+}
+
+/* Label + arrow */
+.v1-cta-content {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 22px;
+}
+
+.v1-cta-label {
+    font-family: var(--font);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    white-space: nowrap;
+}
+
+.v1-cta-arrow {
+    color: rgba(147, 197, 253, 0.9);
+    flex-shrink: 0;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                color 0.3s ease;
+}
+
+.v1-cta-btn:hover .v1-cta-arrow {
+    transform: rotate(45deg);
+    color: #fff;
+}
+
+/* Dividers */
+.v1-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.06);
+    flex-shrink: 0;
+}
+
+/* Metrics block — dividers are internal, 30px away from the stat numbers.
+   Flex: 1 allows this to grow and fill middle space between headline and clocks. */
+.v1-metrics-block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.v1-metrics-block .v1-divider:first-child {
+    margin-bottom: 100px;
+}
+
+.v1-metrics-block .v1-divider:last-child {
+    margin-top: 100px;
+}
+
+/* Metrics */
+.v1-metrics {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.v1-stat {
+    text-align: center;
+    flex: 1;
+}
+
+.v1-stat + .v1-stat {
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Clocks — pinned to bottom of left column.
+   flex: 0 0 auto keeps them from growing.
+   padding-bottom: 26px aligns the .clock-time digit baseline with the bento card bottom edge. */
+.v1-clocks {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 76px;
+}
+
+/* Clock styles (reused from dashboard.css) */
+.clock-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.clock-face { width: clamp(50px, 4.5vw, 70px); height: clamp(50px, 4.5vw, 70px); }
+.clock-svg { width: 100%; height: 100%; }
+.clock-ring { fill: none; stroke: rgba(255, 255, 255, 0.08); stroke-width: 1; }
+.clock-hand { stroke-linecap: round; transform-origin: 50px 50px; transition: transform 0.3s cubic-bezier(0.4, 2.08, 0.55, 0.44); }
+.clock-hand-hour { stroke-width: 2.5; stroke: var(--white); }
+.clock-hand-minute { stroke-width: 1.5; stroke: rgba(255, 255, 255, 0.8); }
+.clock-hand-second { stroke-width: 0.7; stroke: var(--accent-blue); }
+.clock-center-dot { fill: var(--accent-blue); }
+.clock-city { font-family: var(--font); font-size: 0.55rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-300); }
+.clock-time { font-family: var(--font); font-size: 0.7rem; font-weight: 300; letter-spacing: 0.05em; color: var(--white); font-variant-numeric: tabular-nums; }
+
+/* Metrics font size override — larger but single-line safe */
+.v1-metrics .hero-stat-number,
+.v1-metrics .hero-stat-prefix,
+.v1-metrics .hero-stat-suffix {
+    font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+}
+
+.v1-metrics .hero-stat-label {
+    font-size: 0.6rem;
+}
+
+/* ---------- RIGHT COLUMN ---------- */
+.v1-right {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 16px 16px;
+    min-height: 0;
+}
+
+.v1-right > .bento-grid {
+    flex: 0 1 calc(100% - 36px);
+    min-height: 0;
+    overflow: hidden;
+}
+
+.v1-bento-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 0;
+    flex-shrink: 0;
+}
+
+/* Bento overrides */
+.dashboard-bento-grid {
+    height: 100%;
+    grid-template-rows: 1fr 1fr !important;
+    grid-auto-rows: 1fr !important;
+    gap: 10px !important;
+}
+
+.dashboard-bento-grid .bento-row-four {
+    grid-auto-rows: 1fr !important;
+    grid-template-rows: 1fr !important;
+    min-height: 0;
+    gap: 10px;
+}
+
+.dashboard-bento-grid .bento-card {
+    opacity: 1;
+    transform: none;
+    border-radius: 14px;
+}
+
+.dashboard-bento-grid .bento-card::before,
+.dashboard-bento-grid .bento-card::after { border-radius: 14px; }
+
+.dashboard-bento-grid .bento-card-content { padding: 18px; }
+.dashboard-bento-grid .bento-card-featured .bento-card-name { font-size: 1.4rem; }
+.dashboard-bento-grid .bento-card-name { font-size: 1rem; margin-bottom: 4px; }
+.dashboard-bento-grid .bento-card-desc { font-size: 0.75rem; margin-bottom: 8px; }
+.dashboard-bento-grid .bento-card-meta { font-size: 0.65rem; }
+.dashboard-bento-grid .bento-card-logo-img { width: 36px; height: 36px; border-radius: 10px; }
+.dashboard-bento-grid .bento-card-tag { font-size: 0.55rem; padding: 4px 10px; }
+
+/* Align all bottom-row card names to the same horizontal baseline */
+.dashboard-bento-grid .bento-row-four .bento-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.dashboard-bento-grid .bento-row-four .bento-card-bottom {
+    transform: none;
+    margin-top: auto;
+    min-height: 0;
+}
+
+/* Remove gradient overlays on non-hover state */
+.dashboard-bento-grid .bento-card-bg-overlay {
+    background: transparent !important;
+}
+
+/* Restore overlay on hover — heavy only at the bottom for text legibility */
+.dashboard-bento-grid .bento-card:hover .bento-card-bg-overlay {
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        transparent 45%,
+        rgba(0, 10, 31, 0.55) 68%,
+        rgba(0, 10, 31, 0.88) 85%,
+        rgba(0, 10, 31, 0.96) 100%
+    ) !important;
+}
+
+/* Special case: AAI on hover — same bottom-only approach, slightly stronger */
+.dashboard-bento-grid .bento-card[data-category="aai"]:hover .bento-card-bg-overlay {
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        transparent 35%,
+        rgba(0, 10, 31, 0.65) 60%,
+        rgba(0, 10, 31, 0.92) 82%,
+        rgba(0, 10, 31, 0.98) 100%
+    ) !important;
+}
+
+/* Subtle text shadow on card names for legibility */
+.dashboard-bento-grid .bento-card-name {
+    text-shadow:
+        0 1px 6px rgba(0, 0, 0, 0.55),
+        0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* Light blue border on all bento cards */
+.dashboard-bento-grid .bento-card {
+    border: 1px solid rgba(74, 144, 217, 0.18) !important;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Border beam — a bright spot that travels around the card border on hover */
+.dashboard-bento-grid .bento-card-glow::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 14px;
+    background: conic-gradient(
+        from var(--beam-angle, 0deg),
+        transparent 0deg,
+        transparent 60deg,
+        rgba(74, 144, 217, 0.75) 90deg,
+        rgba(147, 197, 253, 0.9) 100deg,
+        rgba(74, 144, 217, 0.75) 110deg,
+        transparent 140deg,
+        transparent 360deg
+    );
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 1px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 4;
+    transition: opacity 0.2s ease;
+}
+
+.dashboard-bento-grid .bento-card:hover .bento-card-glow::before {
+    opacity: 1;
+    animation: borderBeam 1.2s linear forwards;
+}
+
+@keyframes borderBeam {
+    0%   { --beam-angle: 0deg;   opacity: 1; }
+    80%  { --beam-angle: 360deg; opacity: 1; }
+    100% { --beam-angle: 360deg; opacity: 0; }
+}
+
+@property --beam-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+/* View all link */
+.dashboard-view-all {
+    font-family: var(--font);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.45);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.3s ease;
+}
+.dashboard-view-all:hover { color: rgba(255, 255, 255, 0.85); }
+.dashboard-view-all svg { width: 10px; height: 10px; transition: transform 0.3s ease; }
+.dashboard-view-all:hover svg { transform: translate(2px, -2px); }
+
+/* ── Bento Rotation: crossfade support ── */
+.dashboard-bento-grid .bento-card-bg {
+    opacity: 1;
+}
+
+.dashboard-bento-grid .bento-card-content {
+    opacity: 1;
+}
