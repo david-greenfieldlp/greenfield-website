@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenfield Partners — Scaling the Inevitable</title>
+    <meta name="description" content="Greenfield Partners is a venture capital fund investing globally at the early growth stage. Scaling the Inevitable.">
+
+    <!-- Google Fonts: Manrope -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- GSAP + ScrollTrigger + SplitText -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ============================== -->
+    <!-- LOADING SCREEN -->
+    <!-- ============================== -->
+    <div class="loader" id="loader">
+        <div class="loader-inner">
+            <div class="loader-logo">
+                <svg width="156" height="32" viewBox="0 0 156 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M25.0404 4.8001V4.2751C25.0404 4.1751 24.972 4.1001 24.8808 4.1001H3.89987C3.80865 4.1001 3.74023 4.1751 3.74023 4.2751V27.5251C3.74023 27.6001 3.78585 27.6751 3.83146 27.7001C3.85426 27.7001 3.87707 27.7001 3.89987 27.7001C3.94548 27.7001 25.0632 27.7001 25.1088 27.7001C25.1316 27.7001 25.1544 27.7001 25.1772 27.7001C25.2457 27.6751 25.2685 27.6001 25.2685 27.5251V15.5001C25.2685 15.4001 25.2001 15.3251 25.1088 15.3251H24.6299C24.5387 15.3251 24.4703 15.4001 24.4703 15.5001V26.8751H4.56123V4.9751H24.9036C24.972 4.9751 25.0404 4.9001 25.0404 4.8001Z" fill="white"/>
+                    <path d="M8.27866 9.0752H21.1409C21.2321 9.0752 21.3006 9.00022 21.3006 8.90022V8.37522C21.3006 8.27522 21.2321 8.2002 21.1409 8.2002H7.64011C7.54889 8.2002 7.48047 8.27522 7.48047 8.37522V23.4502C7.48047 23.5252 7.52608 23.6002 7.57169 23.6252C7.5945 23.6252 7.6173 23.6252 7.64011 23.6252C7.68572 23.6252 21.3462 23.6252 21.3918 23.6252C21.4146 23.6252 21.4374 23.6252 21.4602 23.6252C21.5286 23.6002 21.5514 23.5252 21.5514 23.4502V15.4752C21.5514 15.3752 21.483 15.3002 21.3918 15.3002H20.9129C20.8216 15.3002 20.7532 15.3752 20.7532 15.4752V22.8002H8.27866V9.0752Z" fill="white"/>
+                    <path d="M28.8489 15.3H28.3699C28.2787 15.3 28.2103 15.375 28.2103 15.475V30.975H0.79819V0.875H28.598C28.6892 0.875 28.7576 0.799998 28.7576 0.699998V0.175003C28.7576 0.075003 28.6892 0 28.598 0H0.159637C0.0684156 0 0 0.075003 0 0.175003V31.625C0 31.7 0.0456095 31.775 0.0912203 31.8C0.114026 31.8 0.136832 31.8 0.159637 31.8C0.205248 31.8 28.8033 31.8 28.8489 31.8C28.8717 31.8 28.8945 31.8 28.9173 31.8C28.9857 31.775 29.0085 31.7 29.0085 31.625V15.475C29.0085 15.375 28.9401 15.3 28.8489 15.3Z" fill="white"/>
+                    <path d="M48.3932 15.905H52.6578V16.63C52.6578 19.48 51.1754 21.355 48.6212 21.355C45.8618 21.355 44.1514 19.18 44.1514 16.43C44.1514 13.655 45.9074 11.48 48.6668 11.48C50.879 11.48 51.8596 12.705 51.8596 12.705L51.1526 13.705C51.1526 13.705 50.2404 12.705 48.6668 12.705C46.6372 12.705 45.3601 14.355 45.3601 16.43C45.3601 18.48 46.5687 20.13 48.5984 20.13C50.286 20.13 51.4035 18.93 51.4491 17.18V17.055H48.416V15.905H48.3932Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M64.721 14.8801C64.721 16.3801 63.9685 17.3801 62.7826 17.8301V17.9051L65.0175 20.9051V21.1551H63.7176L61.4599 18.0801H58.8372V21.1551H57.6514V11.7051H61.2546C63.3983 11.7051 64.721 12.8301 64.721 14.8801ZM61.2318 12.8801H58.8372V16.9051H61.3458C62.6001 16.9051 63.4896 16.2801 63.4896 14.9051C63.4896 13.5551 62.6001 12.8801 61.2318 12.8801Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M75.7818 17.0552H71.2435V19.9552H76.4659V21.1302H70.0576V11.6802H76.4659V12.8552H71.2435V15.8802H75.7818V17.0552Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M87.5718 17.0549H83.0335V19.9549H88.256V21.1299H81.8477V11.6799H88.256V12.8549H83.0335V15.8799H87.5718V17.0549Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M101.209 21.1551H100.89L94.7777 14.3801V21.1551H93.5918V11.7051H93.9111L100 18.4051V11.7051H101.186V21.1551H101.209Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M106.661 11.7051H113.069V12.8801H107.847V15.9051H112.431V17.0551H107.847V21.1551H106.661V11.7051Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M119.18 21.1551H117.994V11.7051H119.18V21.1551Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M130.104 17.0552H125.566V19.9552H130.788V21.1302H124.38V11.6802H130.788V12.8552H125.566V15.8802H130.104V17.0552Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M136.011 21.1551V11.7051H137.197V19.9551H142.123V21.1301H136.011V21.1551Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M150.059 21.1551H146.98V11.7051H150.059C152.796 11.7051 154.643 13.5551 154.643 16.4301C154.643 19.3051 152.819 21.1551 150.059 21.1551ZM148.166 12.8801V19.9551H149.991C151.952 19.9551 153.457 18.6551 153.457 16.4051C153.457 14.1551 151.975 12.8551 149.991 12.8551H148.166V12.8801Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                </svg>
+            </div>
+            <div class="loader-bar-track">
+                <div class="loader-bar-fill" id="loaderBar"></div>
+            </div>
+            <p class="loader-text">Scaling the Inevitable</p>
+        </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- NAVIGATION -->
+    <!-- ============================== -->
+    <header class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo" aria-label="Greenfield Partners Home">
+                <svg width="156" height="32" viewBox="0 0 156 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M25.0404 4.8001V4.2751C25.0404 4.1751 24.972 4.1001 24.8808 4.1001H3.89987C3.80865 4.1001 3.74023 4.1751 3.74023 4.2751V27.5251C3.74023 27.6001 3.78585 27.6751 3.83146 27.7001C3.85426 27.7001 3.87707 27.7001 3.89987 27.7001C3.94548 27.7001 25.0632 27.7001 25.1088 27.7001C25.1316 27.7001 25.1544 27.7001 25.1772 27.7001C25.2457 27.6751 25.2685 27.6001 25.2685 27.5251V15.5001C25.2685 15.4001 25.2001 15.3251 25.1088 15.3251H24.6299C24.5387 15.3251 24.4703 15.4001 24.4703 15.5001V26.8751H4.56123V4.9751H24.9036C24.972 4.9751 25.0404 4.9001 25.0404 4.8001Z" fill="white"/>
+                    <path d="M8.27866 9.0752H21.1409C21.2321 9.0752 21.3006 9.00022 21.3006 8.90022V8.37522C21.3006 8.27522 21.2321 8.2002 21.1409 8.2002H7.64011C7.54889 8.2002 7.48047 8.27522 7.48047 8.37522V23.4502C7.48047 23.5252 7.52608 23.6002 7.57169 23.6252C7.5945 23.6252 7.6173 23.6252 7.64011 23.6252C7.68572 23.6252 21.3462 23.6252 21.3918 23.6252C21.4146 23.6252 21.4374 23.6252 21.4602 23.6252C21.5286 23.6002 21.5514 23.5252 21.5514 23.4502V15.4752C21.5514 15.3752 21.483 15.3002 21.3918 15.3002H20.9129C20.8216 15.3002 20.7532 15.3752 20.7532 15.4752V22.8002H8.27866V9.0752Z" fill="white"/>
+                    <path d="M28.8489 15.3H28.3699C28.2787 15.3 28.2103 15.375 28.2103 15.475V30.975H0.79819V0.875H28.598C28.6892 0.875 28.7576 0.799998 28.7576 0.699998V0.175003C28.7576 0.075003 28.6892 0 28.598 0H0.159637C0.0684156 0 0 0.075003 0 0.175003V31.625C0 31.7 0.0456095 31.775 0.0912203 31.8C0.114026 31.8 0.136832 31.8 0.159637 31.8C0.205248 31.8 28.8033 31.8 28.8489 31.8C28.8717 31.8 28.8945 31.8 28.9173 31.8C28.9857 31.775 29.0085 31.7 29.0085 31.625V15.475C29.0085 15.375 28.9401 15.3 28.8489 15.3Z" fill="white"/>
+                    <path d="M48.3932 15.905H52.6578V16.63C52.6578 19.48 51.1754 21.355 48.6212 21.355C45.8618 21.355 44.1514 19.18 44.1514 16.43C44.1514 13.655 45.9074 11.48 48.6668 11.48C50.879 11.48 51.8596 12.705 51.8596 12.705L51.1526 13.705C51.1526 13.705 50.2404 12.705 48.6668 12.705C46.6372 12.705 45.3601 14.355 45.3601 16.43C45.3601 18.48 46.5687 20.13 48.5984 20.13C50.286 20.13 51.4035 18.93 51.4491 17.18V17.055H48.416V15.905H48.3932Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M64.721 14.8801C64.721 16.3801 63.9685 17.3801 62.7826 17.8301V17.9051L65.0175 20.9051V21.1551H63.7176L61.4599 18.0801H58.8372V21.1551H57.6514V11.7051H61.2546C63.3983 11.7051 64.721 12.8301 64.721 14.8801ZM61.2318 12.8801H58.8372V16.9051H61.3458C62.6001 16.9051 63.4896 16.2801 63.4896 14.9051C63.4896 13.5551 62.6001 12.8801 61.2318 12.8801Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M75.7818 17.0552H71.2435V19.9552H76.4659V21.1302H70.0576V11.6802H76.4659V12.8552H71.2435V15.8802H75.7818V17.0552Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M87.5718 17.0549H83.0335V19.9549H88.256V21.1299H81.8477V11.6799H88.256V12.8549H83.0335V15.8799H87.5718V17.0549Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M101.209 21.1551H100.89L94.7777 14.3801V21.1551H93.5918V11.7051H93.9111L100 18.4051V11.7051H101.186V21.1551H101.209Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M106.661 11.7051H113.069V12.8801H107.847V15.9051H112.431V17.0551H107.847V21.1551H106.661V11.7051Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M119.18 21.1551H117.994V11.7051H119.18V21.1551Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M130.104 17.0552H125.566V19.9552H130.788V21.1302H124.38V11.6802H130.788V12.8552H125.566V15.8802H130.104V17.0552Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M136.011 21.1551V11.7051H137.197V19.9551H142.123V21.1301H136.011V21.1551Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                    <path d="M150.059 21.1551H146.98V11.7051H150.059C152.796 11.7051 154.643 13.5551 154.643 16.4301C154.643 19.3051 152.819 21.1551 150.059 21.1551ZM148.166 12.8801V19.9551H149.991C151.952 19.9551 153.457 18.6551 153.457 16.4051C153.457 14.1551 151.975 12.8551 149.991 12.8551H148.166V12.8801Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                </svg>
+            </a>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#approach" class="nav-link">Investment Approach</a>
+                <a href="g2m.html" class="nav-link">G<sup>2</sup>M</a>
+                <a href="#companies" class="nav-link">Companies</a>
+                <a href="#team" class="nav-link">Team</a>
+                <a href="#knowledge" class="nav-link">KnowledgeHub</a>
+                <a href="#careers" class="nav-link">Careers</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="#follow" class="btn-cta">
+                    <span class="btn-cta-text">Follow Us</span>
+                    <span class="btn-cta-icon">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </a>
+                <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-inner">
+            <a href="#approach" class="mobile-menu-link">Investment Approach</a>
+            <a href="g2m.html" class="mobile-menu-link">G<sup>2</sup>M</a>
+            <a href="#companies" class="mobile-menu-link">Companies</a>
+            <a href="#team" class="mobile-menu-link">Team</a>
+            <a href="#knowledge" class="mobile-menu-link">KnowledgeHub</a>
+            <a href="#careers" class="mobile-menu-link">Careers</a>
+            <a href="#follow" class="btn-cta mobile-cta">
+                <span class="btn-cta-text">Follow Us</span>
+                <span class="btn-cta-icon">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- HERO SECTION -->
+    <!-- ============================== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="hero-bg-image" style="background-image: url('assets/images/hero-main-nobleed.png')"></div>
+            <div class="hero-bg-overlay"></div>
+            <div class="hero-bg-grain"></div>
+        </div>
+
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="hero-title-line">
+                    <span class="hero-title-word" data-word>Scaling</span>
+                </span>
+                <span class="hero-title-line">
+                    <span class="hero-title-word" data-word>the</span>
+                    <span class="hero-title-word hero-title-accent" data-word>Inevitable</span>
+                </span>
+            </h1>
+
+            <p class="hero-subtitle">Investing Globally at the Early Growth Stage</p>
+
+            <div class="hero-cta-group">
+                <a href="#companies" class="hero-btn hero-btn-primary">
+                    <span>Our Companies</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="#approach" class="hero-btn hero-btn-secondary">
+                    <span>Our Approach</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-scroll-indicator" id="scrollIndicator">
+            <div class="hero-scroll-line"></div>
+            <span class="hero-scroll-text">Scroll to explore</span>
+        </div>
+
+        <!-- Floating stats -->
+        <div class="hero-stats">
+            <div class="hero-stat" data-delay="0">
+                <div class="hero-stat-value">
+                    <span class="hero-stat-number" data-count="23">0</span>
+                </div>
+                <span class="hero-stat-label">Portfolio<br>Companies</span>
+            </div>
+            <div class="hero-stat" data-delay="0.1">
+                <div class="hero-stat-value">
+                    <span class="hero-stat-prefix">$</span><span class="hero-stat-number" data-count="1">0</span><span class="hero-stat-suffix">B+</span>
+                </div>
+                <span class="hero-stat-label">AUM</span>
+            </div>
+            <div class="hero-stat" data-delay="0.2">
+                <div class="hero-stat-value">
+                    <span class="hero-stat-prefix">$</span><span class="hero-stat-number" data-count="3">0</span><span class="hero-stat-suffix">B+</span>
+                </div>
+                <span class="hero-stat-label">Capital Raised by<br>Greenfield Companies</span>
+            </div>
+            <div class="hero-stat" data-delay="0.3">
+                <div class="hero-stat-value">
+                    <span class="hero-stat-prefix">$</span><span class="hero-stat-number" data-count="12">0</span><span class="hero-stat-suffix">B</span>
+                </div>
+                <span class="hero-stat-label">Enterprise Value<br>Created</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- PORTFOLIO BENTO GRID -->
+    <!-- ============================== -->
+    <section class="portfolio" id="companies">
+        <div class="portfolio-container">
+            <!-- Section header -->
+            <div class="portfolio-header">
+                <div class="portfolio-header-left">
+                    <span class="section-tag">Portfolio</span>
+                    <h2 class="portfolio-title">
+                        <span class="portfolio-title-line">Meet</span>
+                        <span class="portfolio-title-line"><em>Our Companies</em></span>
+                    </h2>
+                </div>
+                <div class="portfolio-header-right">
+                    <a href="#" class="portfolio-view-all">
+                        <span>View all companies</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bento Grid -->
+            <div class="bento-grid">
+                <!-- Card 1 — VAST Data (Large featured) -->
+                <div class="bento-card bento-card-featured" data-category="ai-infra">
+                    <div class="bento-card-bg bento-card-bg-img" style="background-image: url('assets/portfolio bgs/vast bg.png')"></div>
+                    <div class="bento-card-bg-overlay"></div>
+                    <div class="bento-card-glow"></div>
+                    <div class="bento-card-content">
+                        <div class="bento-card-top">
+                            <div class="bento-card-icon">
+                                <img src="assets/Favicons/vast favicon.png" alt="VAST Data" class="bento-card-logo-img">
+                            </div>
+                            <span class="bento-card-tag">AI Infrastructure</span>
+                        </div>
+                        <div class="bento-card-bottom">
+                            <h3 class="bento-card-name">VAST Data</h3>
+                            <p class="bento-card-desc">The Data Platform Company for the AI Era</p>
+                            <div class="bento-card-meta">
+                                <span class="bento-card-stage">Led Series B</span>
+                                <span class="bento-card-divider">·</span>
+                                <span class="bento-card-location">2019</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bento-card-hover-line"></div>
+                </div>
+
+                <!-- Card 2 — Coralogix -->
+                <div class="bento-card" data-category="it-infra">
+                    <div class="bento-card-bg bento-card-bg-img" style="background-image: url('assets/portfolio bgs/coralogix bg.png')"></div>
+                    <div class="bento-card-bg-overlay"></div>
+                    <div class="bento-card-glow"></div>
+                    <div class="bento-card-content">
+                        <div class="bento-card-top">
+                            <div class="bento-card-icon">
+                                <img src="assets/Coralogix/cropped-cropped-favicon-192x192.png" alt="Coralogix" class="bento-card-logo-img">
+                            </div>
+                            <span class="bento-card-tag">IT Infrastructure</span>
+                        </div>
+                        <div class="bento-card-bottom">
+                            <h3 class="bento-card-name">Coralogix</h3>
+                            <p class="bento-card-desc">Observability and Security that Scale with You</p>
+                            <div class="bento-card-meta">
+                                <span class="bento-card-stage">Led Series B</span>
+                                <span class="bento-card-divider">·</span>
+                                <span class="bento-card-location">2021</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bento-card-hover-line"></div>
+                </div>
+
+                <!-- Card 3 — Exodigo -->
+                <div class="bento-card" data-category="deep-tech">
+                    <div class="bento-card-bg bento-card-bg-img" style="background-image: url('assets/portfolio bgs/exodigo bg.png')"></div>
+                    <div class="bento-card-bg-overlay"></div>
+                    <div class="bento-card-glow"></div>
+                    <div class="bento-card-content">
+                        <div class="bento-card-top">
+                            <div class="bento-card-icon">
+                                <img src="assets/Favicons/exodigo favicon.png" alt="Exodigo" class="bento-card-logo-img">
+                            </div>
+                            <span class="bento-card-tag">Deep Tech</span>
+                        </div>
+                        <div class="bento-card-bottom">
+                            <h3 class="bento-card-name">Exodigo</h3>
+                            <p class="bento-card-desc">Non-Intrusive Underground Mapping</p>
+                            <div class="bento-card-meta">
+                                <span class="bento-card-stage">Led Series A</span>
+                                <span class="bento-card-divider">·</span>
+                                <span class="bento-card-location">2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bento-card-hover-line"></div>
+                </div>
+
+                <!-- Bottom row — 4 equal cards -->
+                <div class="bento-row-four">
+
+                    <!-- Card 4 — RobCo -->
+                    <div class="bento-card" data-category="deep-tech">
+                        <div class="bento-card-bg bento-card-bg-img" style="background-image: url('assets/portfolio bgs/robco bg.png')"></div>
+                        <div class="bento-card-bg-overlay"></div>
+                        <div class="bento-card-glow"></div>
+                        <div class="bento-card-content">
+                            <div class="bento-card-top">
+                                <div class="bento-card-icon">
+                                    <img src="assets/Favicons/robco favicon.png" alt="RobCo" class="bento-card-logo-img">
+                                </div>
+                                <span class="bento-card-tag">Deep Tech</span>
+                            </div>
+                            <div class="bento-card-bottom">
+                                <h3 class="bento-card-name">RobCo</h3>
+                                <p class="bento-card-desc">The Robot Company centered on Software and AI</p>
+                                <div class="bento-card-meta">
+                                    <span class="bento-card-stage">Series C</span>
+                                    <span class="bento-card-divider">·</span>
+                                    <span class="bento-card-location">2026</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bento-card-hover-line"></div>
+                    </div>
+
+                    <!-- Card 5 — Torq -->
+                    <div class="bento-card" data-category="cybersecurity">
+                        <div class="bento-card-bg bento-card-bg-img" style="background-image: url('assets/portfolio bgs/torq bg.png')"></div>
+                        <div class="bento-card-bg-overlay"></div>
+                        <div class="bento-card-glow"></div>
+                        <div class="bento-card-content">
+                            <div class="bento-card-top">
+                                <div class="bento-card-icon">
+                                    <img src="assets/Favicons/torq favicon.png" alt="Torq" class="bento-card-logo-img">
+                                </div>
+                                <span class="bento-card-tag">Cybersecurity</span>
+                            </div>
+                            <div class="bento-card-bottom">
+                                <h3 class="bento-card-name">Torq</h3>
+                                <p class="bento-card-desc">The AI-Native Hyperautomation Platform for Security Teams</p>
+                                <div class="bento-card-meta">
+                                    <span class="bento-card-stage">Led Series B</span>
+                                    <span class="bento-card-divider">·</span>
+                                    <span class="bento-card-location">2023</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bento-card-hover-line"></div>
+                    </div>
+
+                    <!-- Card 6 — AAI -->
+                    <div class="bento-card" data-category="aai">
+                        <div class="bento-card-bg bento-card-bg-img" style="background-image: url('assets/portfolio bgs/aai bg.png')"></div>
+                        <div class="bento-card-bg-overlay"></div>
+                        <div class="bento-card-glow"></div>
+                        <div class="bento-card-content">
+                            <div class="bento-card-top">
+                                <div class="bento-card-icon">
+                                    <img src="assets/Favicons/AAI favicon.png" alt="AAI" class="bento-card-logo-img">
+                                </div>
+                                <span class="bento-card-tag">AI Infrastructure</span>
+                            </div>
+                            <div class="bento-card-bottom">
+                                <h3 class="bento-card-name">AAI</h3>
+                                <p class="bento-card-desc">Cracking the Code of Superintelligence</p>
+                                <div class="bento-card-meta">
+                                    <span class="bento-card-stage">Series A</span>
+                                    <span class="bento-card-divider">·</span>
+                                    <span class="bento-card-location">2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bento-card-hover-line"></div>
+                    </div>
+
+                    <!-- Card 7 — Silverfort -->
+                    <div class="bento-card" data-category="cybersecurity">
+                        <div class="bento-card-bg bento-card-bg-img" style="background-image: url('assets/portfolio bgs/silverfort bg.png')"></div>
+                        <div class="bento-card-bg-overlay"></div>
+                        <div class="bento-card-glow"></div>
+                        <div class="bento-card-content">
+                            <div class="bento-card-top">
+                                <div class="bento-card-icon">
+                                    <img src="assets/Favicons/silverfort favicon.png" alt="Silverfort" class="bento-card-logo-img">
+                                </div>
+                                <span class="bento-card-tag">Cybersecurity</span>
+                            </div>
+                            <div class="bento-card-bottom">
+                                <h3 class="bento-card-name">Silverfort</h3>
+                                <p class="bento-card-desc">Where Identity Security has Never Gone Before</p>
+                                <div class="bento-card-meta">
+                                    <span class="bento-card-stage">Led Series C</span>
+                                    <span class="bento-card-divider">·</span>
+                                    <span class="bento-card-location">2022</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bento-card-hover-line"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- INVESTMENT APPROACH SECTION -->
+    <!-- ============================== -->
+    <section class="invest-approach" id="approach">
+        <div class="invest-approach-container">
+
+            <!-- ===== DESKTOP DIAGRAM ===== -->
+            <div class="diagram-desktop" id="diagramDesktop">
+
+                <!-- Lead Text (sits above diagram, overlaps via negative margin) -->
+                <div class="invest-lead-overlay">
+                    <p class="invest-lead-text">We partner with exceptional technology companies globally at the Early-Growth stage, <span class="invest-lead-text-gray">when implementing an efficient go-to-market machine becomes the key to unlocking global scale.</span></p>
+                    <a href="#" class="invest-approach-pill-btn">
+                        <span>Investment Approach</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="diagram-wrapper">
+
+                    <!-- Layer 1: SVG Curve Graph (on top, non-interactive) -->
+                    <div class="diagram-graph-layer">
+                        <svg class="diagram-graph-svg" viewBox="0 0 1447 828.4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="curveGradient" x1="22.8" y1="474.3" x2="1484.8" y2="329.7" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0" stop-color="#0a4a3e" stop-opacity="0.6"/>
+                                    <stop offset=".4" stop-color="#06c4a2"/>
+                                    <stop offset=".7" stop-color="#06c4a2"/>
+                                    <stop offset="1" stop-color="#0a4a3e" stop-opacity="0.6"/>
+                                </linearGradient>
+                                <linearGradient id="curveFill" x1="0" y1="0" x2="0" y2="828" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0" stop-color="#011132" stop-opacity="0"/>
+                                    <stop offset="0.5" stop-color="#031a3f"/>
+                                    <stop offset="1" stop-color="#011132"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Fill area under curve -->
+                            <path d="M.4,2.4v695s648.5-47.6,1444.7-379.5V2.4H.4Z" fill="url(#curveFill)" opacity="0.5"/>
+                            <!-- The curve line -->
+                            <path d="M1445.9,317.9C649.7,649.9,1.1,697.4,1.1,697.4" fill="none" stroke="url(#curveGradient)" stroke-width="4" stroke-linejoin="bevel"/>
+                            <!-- Subtle glow line -->
+                            <path d="M1445.9,317.9C649.7,649.9,1.1,697.4,1.1,697.4" fill="none" stroke="url(#curveGradient)" stroke-width="12" stroke-linejoin="bevel" opacity="0.15"/>
+                        </svg>
+                    </div>
+
+                    <!-- Baseline -->
+                    <div class="diagram-baseline"></div>
+
+                    <!-- Fade edges -->
+                    <div class="diagram-fade diagram-fade-left"></div>
+                    <div class="diagram-fade diagram-fade-right"></div>
+
+                    <!-- Layer 2: Interactive Columns -->
+                    <div class="diagram-columns" id="diagramColumns">
+
+                        <!-- Column 1: Early Stage -->
+                        <div class="diagram-col" data-col="0">
+                            <div class="diagram-col-badge">
+                                <img src="assets/svg/early_stage_badge.svg" alt="Early Stage" class="diagram-badge-img">
+                            </div>
+                            <div class="diagram-col-fill"></div>
+                            <div class="diagram-col-button-wrap">
+                                <span class="diagram-col-button">Early Stage</span>
+                            </div>
+                        </div>
+
+                        <!-- Column 2: Early-Growth Stage (taller — our sweet spot) -->
+                        <div class="diagram-col diagram-col-center" data-col="1">
+                            <div class="diagram-col-badge">
+                                <img src="assets/svg/early_growth_badge.svg" alt="Early-Growth Stage" class="diagram-badge-img">
+                            </div>
+                            <div class="diagram-col-fill"></div>
+                            <div class="diagram-col-button-wrap">
+                                <span class="diagram-col-button diagram-col-button-active">Early-Growth Stage</span>
+                            </div>
+                        </div>
+
+                        <!-- Column 3: Late Stage -->
+                        <div class="diagram-col" data-col="2">
+                            <div class="diagram-col-badge">
+                                <img src="assets/svg/late_stage_badge.svg" alt="Late Stage" class="diagram-badge-img">
+                            </div>
+                            <div class="diagram-col-fill"></div>
+                            <div class="diagram-col-button-wrap">
+                                <span class="diagram-col-button">Late Stage</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Layer 3: Modal Overlays -->
+                    <div class="diagram-modals" id="diagramModals">
+
+                        <!-- Modal 0: Early Stage -->
+                        <div class="diagram-modal" data-modal="0">
+                            <div class="diagram-modal-inner">
+                                <div class="diagram-modal-badge">
+                                    <img src="assets/svg/early_stage_badge.svg" alt="" class="diagram-modal-badge-img">
+                                </div>
+                                <h3 class="diagram-modal-title">Early Stage</h3>
+                                <div class="diagram-modal-list">
+                                    <div class="diagram-modal-item"><p>Iterating to Achieve Product-Market Fit</p></div>
+                                    <div class="diagram-modal-item"><p>Securing initial customers and rapid growth</p></div>
+                                    <div class="diagram-modal-item"><p>Founder-led sales efforts</p></div>
+                                    <div class="diagram-modal-item"><p>Navigating structured chaos</p></div>
+                                    <div class="diagram-modal-item"><p>Founder-centric management style</p></div>
+                                    <div class="diagram-modal-item"><p>Board meetings driven by product vision</p></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal 1: Early-Growth Stage -->
+                        <div class="diagram-modal diagram-modal-center" data-modal="1">
+                            <div class="diagram-modal-inner">
+                                <div class="diagram-modal-badge">
+                                    <img src="assets/svg/early_growth_badge.svg" alt="" class="diagram-modal-badge-img">
+                                </div>
+                                <h3 class="diagram-modal-title">Early-Growth Stage</h3>
+                                <div class="diagram-modal-list">
+                                    <div class="diagram-modal-item"><p>Scaling from product-market fit to repeatable growth</p></div>
+                                    <div class="diagram-modal-item"><p>Transitioning from founder-led to team-led sales</p></div>
+                                    <div class="diagram-modal-item"><p>Building out the go-to-market strategy</p></div>
+                                    <div class="diagram-modal-item"><p>Refining operations for efficiency and scale</p></div>
+                                    <div class="diagram-modal-item"><p>Balancing rapid expansion with resource management</p></div>
+                                    <div class="diagram-modal-item"><p>Shifting from reactive problem-solving to proactive execution</p></div>
+                                </div>
+                                <div class="diagram-modal-bottom-icon">
+                                    <img src="assets/svg/early_growth_icon.svg" alt="" class="diagram-modal-bottom-icon-img">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal 2: Late Stage -->
+                        <div class="diagram-modal" data-modal="2">
+                            <div class="diagram-modal-inner">
+                                <div class="diagram-modal-badge">
+                                    <img src="assets/svg/late_stage_badge.svg" alt="" class="diagram-modal-badge-img">
+                                </div>
+                                <h3 class="diagram-modal-title">Late Stage</h3>
+                                <div class="diagram-modal-list">
+                                    <div class="diagram-modal-item"><p>Achieving Go-To-Market Fit</p></div>
+                                    <div class="diagram-modal-item"><p>Scaling growth efficiently</p></div>
+                                    <div class="diagram-modal-item"><p>Developing a robust sales engine</p></div>
+                                    <div class="diagram-modal-item"><p>Onboarding external leadership</p></div>
+                                    <div class="diagram-modal-item"><p>Board meetings focused on KPIs and execution</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== MOBILE/TABLET LEAD TEXT ===== -->
+            <div class="invest-lead-mobile">
+                <p class="invest-lead-text">We partner with exceptional technology companies globally at the Early-Growth stage, <span class="invest-lead-text-gray">when implementing an efficient go-to-market machine becomes the key to unlocking global scale.</span></p>
+                <a href="#" class="invest-approach-pill-btn">
+                    <span>Investment Approach</span>
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- ===== MOBILE DIAGRAM ===== -->
+            <div class="diagram-mobile" id="diagramMobile">
+                <!-- Tab buttons -->
+                <div class="diagram-mobile-tabs">
+                    <button class="diagram-mobile-tab" data-tab="0">
+                        <img src="assets/svg/early_stage_badge_mobile.svg" alt="" class="diagram-mobile-tab-icon">
+                        <span>Early Stage</span>
+                    </button>
+                    <button class="diagram-mobile-tab diagram-mobile-tab-active" data-tab="1">
+                        <img src="assets/svg/early_growth_badge.svg" alt="" class="diagram-mobile-tab-icon">
+                        <span>Early-Growth</span>
+                    </button>
+                    <button class="diagram-mobile-tab" data-tab="2">
+                        <img src="assets/svg/late_stage_badge.svg" alt="" class="diagram-mobile-tab-icon">
+                        <span>Late Stage</span>
+                    </button>
+                </div>
+
+                <!-- Slide panels -->
+                <div class="diagram-mobile-slides">
+                    <!-- Slide 0 -->
+                    <div class="diagram-mobile-slide" data-slide="0">
+                        <div class="diagram-mobile-slide-list">
+                            <div class="diagram-modal-item"><p>Iterating to Achieve Product-Market Fit</p></div>
+                            <div class="diagram-modal-item"><p>Securing initial customers and rapid growth</p></div>
+                            <div class="diagram-modal-item"><p>Founder-led sales efforts</p></div>
+                            <div class="diagram-modal-item"><p>Navigating structured chaos</p></div>
+                            <div class="diagram-modal-item"><p>Founder-centric management style</p></div>
+                            <div class="diagram-modal-item"><p>Board meetings driven by product vision</p></div>
+                        </div>
+                        <div class="diagram-mobile-graph-wrap">
+                            <img src="assets/svg/mobile_step_01.svg" alt="" class="diagram-mobile-graph-img">
+                            <div class="diagram-mobile-graph-fade"></div>
+                        </div>
+                    </div>
+                    <!-- Slide 1 -->
+                    <div class="diagram-mobile-slide diagram-mobile-slide-active" data-slide="1">
+                        <div class="diagram-mobile-slide-list">
+                            <div class="diagram-modal-item"><p>Scaling from product-market fit to repeatable growth</p></div>
+                            <div class="diagram-modal-item"><p>Transitioning from founder-led to team-led sales</p></div>
+                            <div class="diagram-modal-item"><p>Building out the go-to-market strategy</p></div>
+                            <div class="diagram-modal-item"><p>Refining operations for efficiency and scale</p></div>
+                            <div class="diagram-modal-item"><p>Balancing rapid expansion with resource management</p></div>
+                            <div class="diagram-modal-item"><p>Shifting from reactive problem-solving to proactive execution</p></div>
+                        </div>
+                        <div class="diagram-mobile-graph-wrap">
+                            <img src="assets/svg/mobile_step_02.svg" alt="" class="diagram-mobile-graph-img">
+                            <div class="diagram-mobile-graph-fade"></div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="diagram-mobile-slide" data-slide="2">
+                        <div class="diagram-mobile-slide-list">
+                            <div class="diagram-modal-item"><p>Achieving Go-To-Market Fit</p></div>
+                            <div class="diagram-modal-item"><p>Scaling growth efficiently</p></div>
+                            <div class="diagram-modal-item"><p>Developing a robust sales engine</p></div>
+                            <div class="diagram-modal-item"><p>Onboarding external leadership</p></div>
+                            <div class="diagram-modal-item"><p>Board meetings focused on KPIs and execution</p></div>
+                        </div>
+                        <div class="diagram-mobile-graph-wrap">
+                            <img src="assets/svg/mobile_step_03.svg" alt="" class="diagram-mobile-graph-img">
+                            <div class="diagram-mobile-graph-fade"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination dots -->
+                <div class="diagram-mobile-dots">
+                    <button class="diagram-mobile-dot" data-dot="0"></button>
+                    <button class="diagram-mobile-dot diagram-mobile-dot-active" data-dot="1"></button>
+                    <button class="diagram-mobile-dot" data-dot="2"></button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- GLOBAL PRESENCE -->
+    <!-- ============================== -->
+    <section class="global-presence" id="global">
+        <div class="global-container">
+            <!-- Section header -->
+            <div class="global-header">
+                <span class="section-tag global-tag">Global Presence</span>
+                <h2 class="global-title">
+                    <span class="global-title-line">We are</span>
+                    <span class="global-title-line"><em>Global</em></span>
+                </h2>
+            </div>
+
+            <!-- Map with perspective wrapper -->
+            <div class="global-map-wrapper">
+                <div class="global-map">
+                    <!-- World map SVG -->
+                    <img src="assets/svg/map.svg" alt="World Map" class="global-map-svg">
+
+                    <!-- Map Pin: New York -->
+                    <div class="map-pin" data-city="new-york" style="left: 26%; top: 32%;">
+                        <div class="map-pin-dot"></div>
+                        <div class="map-pin-ping"></div>
+                        <span class="map-pin-label">New York</span>
+                    </div>
+
+                    <!-- Map Pin: London -->
+                    <div class="map-pin" data-city="london" style="left: 49%; top: 25%;">
+                        <div class="map-pin-dot"></div>
+                        <div class="map-pin-ping"></div>
+                        <span class="map-pin-label">London</span>
+                    </div>
+
+                    <!-- Map Pin: Tel Aviv -->
+                    <div class="map-pin" data-city="tel-aviv" style="left: 55%; top: 34%;">
+                        <div class="map-pin-dot"></div>
+                        <div class="map-pin-ping"></div>
+                        <span class="map-pin-label">Tel Aviv</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- FOOTER -->
+    <!-- ============================== -->
+    <footer class="site-footer" id="footer">
+        <!-- Full background image -->
+        <div class="footer-bg-image" style="background-image: url('assets/images/footer.png')"></div>
+        <div class="footer-bg-overlay"></div>
+
+        <!-- All footer content -->
+        <div class="footer-content">
+
+            <!-- Subscribe CTA -->
+            <div class="footer-cta">
+                <h2 class="footer-cta-title">Keep Pace with Greenfield Partners</h2>
+                <form class="footer-cta-form" onsubmit="return false;">
+                    <div class="footer-cta-fields">
+                        <input type="text" class="footer-cta-input" placeholder="Full Name" aria-label="Full Name">
+                        <input type="email" class="footer-cta-input" placeholder="Email" aria-label="Email">
+                    </div>
+                    <button type="submit" class="footer-cta-btn">
+                        <span>Subscribe</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Logo + Nav -->
+            <div class="footer-mid">
+                <div class="footer-logo">
+                    <a href="#" aria-label="Greenfield Partners Home">
+                        <svg width="200" height="42" viewBox="0 0 156 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M25.0404 4.8001V4.2751C25.0404 4.1751 24.972 4.1001 24.8808 4.1001H3.89987C3.80865 4.1001 3.74023 4.1751 3.74023 4.2751V27.5251C3.74023 27.6001 3.78585 27.6751 3.83146 27.7001C3.85426 27.7001 3.87707 27.7001 3.89987 27.7001C3.94548 27.7001 25.0632 27.7001 25.1088 27.7001C25.1316 27.7001 25.1544 27.7001 25.1772 27.7001C25.2457 27.6751 25.2685 27.6001 25.2685 27.5251V15.5001C25.2685 15.4001 25.2001 15.3251 25.1088 15.3251H24.6299C24.5387 15.3251 24.4703 15.4001 24.4703 15.5001V26.8751H4.56123V4.9751H24.9036C24.972 4.9751 25.0404 4.9001 25.0404 4.8001Z" fill="white"/>
+                            <path d="M8.27866 9.0752H21.1409C21.2321 9.0752 21.3006 9.00022 21.3006 8.90022V8.37522C21.3006 8.27522 21.2321 8.2002 21.1409 8.2002H7.64011C7.54889 8.2002 7.48047 8.27522 7.48047 8.37522V23.4502C7.48047 23.5252 7.52608 23.6002 7.57169 23.6252C7.5945 23.6252 7.6173 23.6252 7.64011 23.6252C7.68572 23.6252 21.3462 23.6252 21.3918 23.6252C21.4146 23.6252 21.4374 23.6252 21.4602 23.6252C21.5286 23.6002 21.5514 23.5252 21.5514 23.4502V15.4752C21.5514 15.3752 21.483 15.3002 21.3918 15.3002H20.9129C20.8216 15.3002 20.7532 15.3752 20.7532 15.4752V22.8002H8.27866V9.0752Z" fill="white"/>
+                            <path d="M28.8489 15.3H28.3699C28.2787 15.3 28.2103 15.375 28.2103 15.475V30.975H0.79819V0.875H28.598C28.6892 0.875 28.7576 0.799998 28.7576 0.699998V0.175003C28.7576 0.075003 28.6892 0 28.598 0H0.159637C0.0684156 0 0 0.075003 0 0.175003V31.625C0 31.7 0.0456095 31.775 0.0912203 31.8C0.114026 31.8 0.136832 31.8 0.159637 31.8C0.205248 31.8 28.8033 31.8 28.8489 31.8C28.8717 31.8 28.8945 31.8 28.9173 31.8C28.9857 31.775 29.0085 31.7 29.0085 31.625V15.475C29.0085 15.375 28.9401 15.3 28.8489 15.3Z" fill="white"/>
+                            <path d="M48.3932 15.905H52.6578V16.63C52.6578 19.48 51.1754 21.355 48.6212 21.355C45.8618 21.355 44.1514 19.18 44.1514 16.43C44.1514 13.655 45.9074 11.48 48.6668 11.48C50.879 11.48 51.8596 12.705 51.8596 12.705L51.1526 13.705C51.1526 13.705 50.2404 12.705 48.6668 12.705C46.6372 12.705 45.3601 14.355 45.3601 16.43C45.3601 18.48 46.5687 20.13 48.5984 20.13C50.286 20.13 51.4035 18.93 51.4491 17.18V17.055H48.416V15.905H48.3932Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                            <path d="M64.721 14.8801C64.721 16.3801 63.9685 17.3801 62.7826 17.8301V17.9051L65.0175 20.9051V21.1551H63.7176L61.4599 18.0801H58.8372V21.1551H57.6514V11.7051H61.2546C63.3983 11.7051 64.721 12.8301 64.721 14.8801ZM61.2318 12.8801H58.8372V16.9051H61.3458C62.6001 16.9051 63.4896 16.2801 63.4896 14.9051C63.4896 13.5551 62.6001 12.8801 61.2318 12.8801Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                            <path d="M75.7818 17.0552H71.2435V19.9552H76.4659V21.1302H70.0576V11.6802H76.4659V12.8552H71.2435V15.8802H75.7818V17.0552Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                            <path d="M87.5718 17.0549H83.0335V19.9549H88.256V21.1299H81.8477V11.6799H88.256V12.8549H83.0335V15.8799H87.5718V17.0549Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                            <path d="M101.209 21.1551H100.89L94.7777 14.3801V21.1551H93.5918V11.7051H93.9111L100 18.4051V11.7051H101.186V21.1551H101.209Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                            <path d="M106.661 11.7051H113.069V12.8801H107.847V15.9051H112.431V17.0551H107.847V21.1551H106.661V11.7051Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                            <path d="M119.18 21.1551H117.994V11.7051H119.18V21.1551Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                            <path d="M130.104 17.0552H125.566V19.9552H130.788V21.1302H124.38V11.6802H130.788V12.8552H125.566V15.8802H130.104V17.0552Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                            <path d="M136.011 21.1551V11.7051H137.197V19.9551H142.123V21.1301H136.011V21.1551Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                            <path d="M150.059 21.1551H146.98V11.7051H150.059C152.796 11.7051 154.643 13.5551 154.643 16.4301C154.643 19.3051 152.819 21.1551 150.059 21.1551ZM148.166 12.8801V19.9551H149.991C151.952 19.9551 153.457 18.6551 153.457 16.4051C153.457 14.1551 151.975 12.8551 149.991 12.8551H148.166V12.8801Z" fill="white" stroke="white" stroke-width="0.461047" stroke-miterlimit="10"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <nav class="footer-nav">
+                    <a href="#approach" class="footer-nav-link">Investment Approach</a>
+                    <a href="g2m.html" class="footer-nav-link">G<sup>2</sup>M</a>
+                    <a href="#companies" class="footer-nav-link">Companies</a>
+                    <a href="#team" class="footer-nav-link">Team</a>
+                    <a href="#knowledge" class="footer-nav-link">KnowledgeHub</a>
+                    <a href="#careers" class="footer-nav-link">Careers</a>
+                </nav>
+            </div>
+
+            <!-- Addresses & Contact -->
+            <div class="footer-addresses">
+                <div class="footer-address">
+                    <span class="footer-address-label">New York</span>
+                    <p class="footer-address-text">200 Park Avenue South, New York<br>Suite 403</p>
+                </div>
+                <div class="footer-address">
+                    <span class="footer-address-label">Israel</span>
+                    <p class="footer-address-text">144 Menachem Begin Road, Tel Aviv<br>Midtown Tower</p>
+                </div>
+                <div class="footer-address">
+                    <span class="footer-address-label">Contact</span>
+                    <a href="mailto:info@greenfield-growth.com" class="footer-email">info@greenfield-growth.com</a>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="footer-divider"></div>
+
+            <!-- Bottom Bar -->
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; Greenfield Partners. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#" class="footer-legal-link">Privacy Policy</a>
+                    <a href="#" class="footer-legal-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
