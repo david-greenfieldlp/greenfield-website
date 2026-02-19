@@ -1,0 +1,31 @@
+# Deploy dashboard-landing branch to GitHub Pages subdirectory
+name: Deploy dashboard-landing to Pages subfolder
+
+on:
+  push:
+    branches: ["dashboard-landing"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout dashboard-landing
+        uses: actions/checkout@v4
+
+      - name: Stage files into dashboard-landing subfolder
+        run: |
+          mkdir -p _deploy/dashboard-landing
+          rsync -av --exclude='.git' --exclude='.github' --exclude='_deploy' . _deploy/dashboard-landing/
+
+      - name: Deploy to gh-pages/dashboard-landing/
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: _deploy/dashboard-landing
+          publish_branch: gh-pages
+          destination_dir: dashboard-landing
+          keep_files: true
