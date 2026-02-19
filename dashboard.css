@@ -1,0 +1,552 @@
+/* ============================================
+   GREENFIELD PARTNERS — DASHBOARD PAGE
+   Single-viewport dashboard layout
+   Extends base styles.css
+   ============================================ */
+
+/* ---------- VIEWPORT LOCK ---------- */
+.dashboard-body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ---------- MAIN GRID ---------- */
+.dashboard-main {
+    height: 100vh;
+    overflow: hidden;
+    padding-top: 80px; /* clear fixed nav */
+    background: var(--navy-deep);
+    position: relative;
+}
+
+/* ---------- BACKGROUND TEXTURE ---------- */
+
+/* Dot grid mesh — SVG data URI, ~3% opacity */
+.dashboard-main::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ccircle cx='1' cy='1' r='1' fill='rgba(255,255,255,0.18)'/%3E%3C/svg%3E");
+    background-size: 28px 28px;
+    background-repeat: repeat;
+    opacity: 0.12;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 40%, transparent 100%);
+}
+
+/* Radial glow — teal behind bento area (right) */
+.dashboard-main::after {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 70%;
+    height: 80%;
+    background: radial-gradient(ellipse at 70% 30%, rgba(74, 144, 217, 0.06) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Glow behind clocks area (bottom-left) */
+.dashboard-bottom::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 35%;
+    height: 100%;
+    background: radial-gradient(ellipse at 20% 80%, rgba(61, 207, 142, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.dashboard-bottom {
+    position: relative;
+}
+
+/* Nav transparent on dashboard */
+.nav-dashboard {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+}
+
+.dashboard-content {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 7fr 3fr;
+    gap: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- TOP ROW (70%) ---------- */
+.dashboard-top {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 0;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* ---------- HEADLINE (left 30%) ---------- */
+.dashboard-headline {
+    display: flex;
+    align-items: center;
+    padding: 40px var(--container-pad);
+}
+
+.dashboard-headline-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.dashboard-headline-text {
+    font-family: var(--font);
+    font-size: clamp(1.3rem, 2vw, 2rem);
+    font-weight: 300;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    color: var(--white);
+}
+
+.dashboard-headline-accent {
+    font-style: italic;
+    font-weight: 400;
+    background: linear-gradient(135deg, var(--white), var(--accent-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.dashboard-headline-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 22px;
+    background: transparent;
+    color: var(--white);
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: all 0.4s var(--ease-out-expo);
+    width: fit-content;
+}
+
+.dashboard-headline-btn:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+}
+
+.dashboard-headline-btn svg {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.4s var(--ease-out-expo);
+}
+
+.dashboard-headline-btn:hover svg {
+    transform: translate(2px, -2px);
+}
+
+/* ---------- BENTO GRID (right 70%) ---------- */
+.dashboard-bento {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 16px 0 0;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* Bento grid fills available space */
+.dashboard-bento > .bento-grid {
+    flex: 1;
+    min-height: 0;
+}
+
+/* Footer strip — holds "View All" + acts as the dividing line */
+.dashboard-bento-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px 0;
+    border-bottom: none;
+    flex-shrink: 0;
+}
+
+/* Dividing line moved below via pseudo-element on dashboard-bottom */
+.dashboard-bottom::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.06);
+    z-index: 1;
+}
+
+/* View all link — bare text, no container */
+.dashboard-view-all {
+    font-family: var(--font);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.45);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.3s ease;
+}
+
+.dashboard-view-all:hover {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.dashboard-view-all svg {
+    width: 10px;
+    height: 10px;
+    transition: transform 0.3s ease;
+}
+
+.dashboard-view-all:hover svg {
+    transform: translate(2px, -2px);
+}
+
+/* Override base bento-grid for dashboard */
+.dashboard-bento-grid {
+    height: 100%;
+    grid-auto-rows: 1fr !important; /* override minmax(280px, auto) */
+    gap: 10px !important;
+}
+
+.dashboard-bento-grid .bento-row-four {
+    grid-auto-rows: 1fr;
+    gap: 10px;
+}
+
+/* Cards visible by default (no scroll-trigger) */
+.dashboard-bento-grid .bento-card {
+    opacity: 1;
+    transform: none;
+    border-radius: 14px;
+}
+
+.dashboard-bento-grid .bento-card::before,
+.dashboard-bento-grid .bento-card::after {
+    border-radius: 14px;
+}
+
+/* Compact card content */
+.dashboard-bento-grid .bento-card-content {
+    padding: 18px;
+}
+
+.dashboard-bento-grid .bento-card-featured .bento-card-name {
+    font-size: 1.4rem;
+}
+
+.dashboard-bento-grid .bento-card-name {
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.dashboard-bento-grid .bento-card-desc {
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+}
+
+.dashboard-bento-grid .bento-card-meta {
+    font-size: 0.65rem;
+}
+
+.dashboard-bento-grid .bento-card-logo-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+}
+
+.dashboard-bento-grid .bento-card-tag {
+    font-size: 0.55rem;
+    padding: 4px 10px;
+}
+
+/* ---------- BOTTOM ROW (30%) ---------- */
+.dashboard-bottom {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* ---------- WORLD CLOCKS ---------- */
+.dashboard-clocks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(20px, 2.5vw, 40px);
+    padding: 0 var(--container-pad) 10px;
+}
+
+.clock-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.clock-face {
+    width: clamp(56px, 5.5vw, 80px);
+    height: clamp(56px, 5.5vw, 80px);
+}
+
+.clock-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.clock-ring {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.08);
+    stroke-width: 1;
+}
+
+.clock-hand {
+    stroke-linecap: round;
+    transform-origin: 50px 50px;
+    transition: transform 0.3s cubic-bezier(0.4, 2.08, 0.55, 0.44);
+}
+
+.clock-hand-hour {
+    stroke-width: 2.5;
+    stroke: var(--white);
+}
+
+.clock-hand-minute {
+    stroke-width: 1.5;
+    stroke: rgba(255, 255, 255, 0.8);
+}
+
+.clock-hand-second {
+    stroke-width: 0.7;
+    stroke: var(--accent-blue);
+}
+
+.clock-center-dot {
+    fill: var(--accent-blue);
+}
+
+.clock-city {
+    font-family: var(--font);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-300);
+}
+
+.clock-time {
+    font-family: var(--font);
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---------- STATS (bottom right) ---------- */
+.dashboard-stats {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 var(--container-pad) 10px;
+}
+
+.dashboard-stats-inner {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+}
+
+.dashboard-stat {
+    text-align: center;
+    padding: 0 clamp(16px, 2vw, 28px);
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dashboard-stat:first-child {
+    border-left: none;
+    padding-left: 0;
+}
+
+.dashboard-stat:last-child {
+    padding-right: 0;
+}
+
+/* ---------- SUBTLE BACKGROUND EFFECTS ---------- */
+.dashboard-top::before {
+    content: '';
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 30%;
+    height: 70%;
+    background: radial-gradient(ellipse at 20% 50%, rgba(74, 144, 217, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.dashboard-top {
+    position: relative;
+}
+
+.dashboard-headline {
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 1200px) {
+    .dashboard-headline-text {
+        font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+    }
+
+    .dashboard-bento-grid .bento-card-featured .bento-card-name {
+        font-size: 1.2rem;
+    }
+
+    .dashboard-stats-inner {
+        gap: 0;
+    }
+
+    .dashboard-stat {
+        padding: 0 clamp(12px, 1.5vw, 20px);
+    }
+}
+
+@media (max-width: 1024px) {
+    /* Allow scrolling on tablet */
+    .dashboard-body {
+        height: auto;
+        overflow: auto;
+    }
+
+    .dashboard-main {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .dashboard-content {
+        height: auto;
+        grid-template-rows: auto auto;
+    }
+
+    /* Stack top row */
+    .dashboard-top {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .dashboard-headline {
+        padding: 32px var(--container-pad);
+        text-align: center;
+        justify-content: center;
+    }
+
+    .dashboard-headline-inner {
+        align-items: center;
+    }
+
+    .dashboard-bento {
+        padding: 16px;
+    }
+
+    .dashboard-bento-grid {
+        height: auto !important;
+        grid-auto-rows: minmax(180px, auto) !important;
+    }
+
+    .dashboard-bento-grid .bento-row-four {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: minmax(180px, auto);
+    }
+
+    /* Stack bottom row */
+    .dashboard-bottom {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .dashboard-clocks {
+        padding: 32px var(--container-pad);
+    }
+
+    .dashboard-stats {
+        padding: 32px var(--container-pad);
+        justify-content: center;
+    }
+
+    .dashboard-top::before {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-headline-text {
+        font-size: 1.3rem;
+    }
+
+    .dashboard-bento-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .dashboard-bento-grid .bento-card-featured {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+
+    .dashboard-stats-inner {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .dashboard-stat {
+        border-right: none;
+        padding: 0 16px;
+    }
+}
+
+@media (max-width: 640px) {
+    .dashboard-bento-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .dashboard-bento-grid .bento-card-featured {
+        grid-column: span 1;
+    }
+
+    .dashboard-bento-grid .bento-row-four {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-clocks {
+        gap: 16px;
+    }
+
+    .clock-face {
+        width: 50px;
+        height: 50px;
+    }
+}
