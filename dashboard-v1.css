@@ -316,21 +316,66 @@
 .dashboard-bento-grid .bento-card-content { padding: 18px; }
 .dashboard-bento-grid .bento-card-featured .bento-card-name { font-size: 1.4rem; }
 .dashboard-bento-grid .bento-card-name { font-size: 1rem; margin-bottom: 4px; }
-.dashboard-bento-grid .bento-card-desc { font-size: 0.75rem; margin-bottom: 8px; }
+.dashboard-bento-grid .bento-card-desc { font-size: 0.75rem; margin-bottom: 8px; color: rgba(255, 255, 255, 0.92); }
 .dashboard-bento-grid .bento-card-meta { font-size: 0.65rem; }
+.dashboard-bento-grid .bento-card-stage,
+.dashboard-bento-grid .bento-card-location { font-weight: 700; color: rgba(255, 255, 255, 0.95); }
 .dashboard-bento-grid .bento-card-logo-img { width: 36px; height: 36px; border-radius: 10px; }
 .dashboard-bento-grid .bento-card-tag { font-size: 0.55rem; padding: 4px 10px; }
 
-/* Align all bottom-row card names to the same horizontal baseline */
-.dashboard-bento-grid .bento-row-four .bento-card-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+/* ── Name pinned to bottom-left; lifts on hover to reveal desc + meta ── */
+
+/* Top section out of flow so it can't push the name away from the bottom */
+.dashboard-bento-grid .bento-card .bento-card-top {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    right: 18px;
 }
-.dashboard-bento-grid .bento-row-four .bento-card-bottom {
-    transform: none;
-    margin-top: auto;
+
+/* Desc + meta collapsed to zero height at rest */
+.dashboard-bento-grid .bento-card .bento-card-desc {
+    max-height: 0;
+    overflow: hidden;
+    margin-bottom: 0;
+    transition: max-height 0.4s ease, opacity 0.35s ease 0.03s, transform 0.35s cubic-bezier(0.16,1,0.3,1) 0.03s;
+}
+
+.dashboard-bento-grid .bento-card .bento-card-meta {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.35s ease 0.06s, transform 0.35s cubic-bezier(0.16,1,0.3,1) 0.06s;
+}
+
+/* On hover: expand desc + meta */
+.dashboard-bento-grid .bento-card:hover .bento-card-desc {
+    max-height: 60px;
+    margin-bottom: 8px;
+}
+
+.dashboard-bento-grid .bento-card:hover .bento-card-meta {
+    max-height: 30px;
+}
+
+/* Content flex-end: bottom block always hugs the card bottom */
+.dashboard-bento-grid .bento-card .bento-card-content {
+    justify-content: flex-end;
+}
+
+/* Name always visible */
+.dashboard-bento-grid .bento-card .bento-card-name {
+    opacity: 1;
+}
+
+/* Bottom block: flush at bottom at rest, lifts on hover */
+.dashboard-bento-grid .bento-card .bento-card-bottom {
+    transform: translateY(0);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     min-height: 0;
+}
+
+.dashboard-bento-grid .bento-card:hover .bento-card-bottom {
+    transform: translateY(-8px);
 }
 
 /* Remove gradient overlays on non-hover state */

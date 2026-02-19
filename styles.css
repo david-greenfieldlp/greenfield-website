@@ -895,10 +895,16 @@ sup { font-size: 0.6em; vertical-align: super; }
     padding: 28px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
+/* Top section absolutely positioned — keeps it pinned to top-left
+   without pushing the name away from the bottom */
 .bento-card-top {
+    position: absolute;
+    top: 28px;
+    left: 28px;
+    right: 28px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -950,12 +956,12 @@ sup { font-size: 0.6em; vertical-align: super; }
 }
 
 .bento-card-bottom {
-    transform: translateY(8px);
+    transform: translateY(0);
     transition: transform 0.5s var(--ease-out-expo);
 }
 
 .bento-card:hover .bento-card-bottom {
-    transform: translateY(0);
+    transform: translateY(-8px);
 }
 
 .bento-card-name {
@@ -964,6 +970,7 @@ sup { font-size: 0.6em; vertical-align: super; }
     letter-spacing: -0.01em;
     margin-bottom: 8px;
     line-height: 1.2;
+    opacity: 1;
 }
 
 .bento-card-featured .bento-card-name {
@@ -973,17 +980,21 @@ sup { font-size: 0.6em; vertical-align: super; }
 .bento-card-desc {
     font-size: 0.85rem;
     line-height: 1.6;
-    color: var(--gray-300);
+    color: rgba(255, 255, 255, 0.92);
     font-weight: 300;
-    margin-bottom: 12px;
     max-width: 400px;
-    /* Hidden by default */
+    /* Collapsed at rest — zero height so name stays at bottom */
+    max-height: 0;
+    overflow: hidden;
+    margin-bottom: 0;
     opacity: 0;
     transform: translateY(6px);
-    transition: opacity 0.35s ease 0.03s, transform 0.35s var(--ease-out-expo) 0.03s;
+    transition: max-height 0.4s ease, margin-bottom 0.4s ease, opacity 0.35s ease 0.03s, transform 0.35s var(--ease-out-expo) 0.03s;
 }
 
 .bento-card:hover .bento-card-desc {
+    max-height: 80px;
+    margin-bottom: 12px;
     opacity: 1;
     transform: translateY(0);
 }
@@ -996,15 +1007,24 @@ sup { font-size: 0.6em; vertical-align: super; }
     color: var(--gray-400);
     font-weight: 500;
     letter-spacing: 0.02em;
-    /* Hidden by default */
+    /* Collapsed at rest */
+    max-height: 0;
+    overflow: hidden;
     opacity: 0;
     transform: translateY(6px);
-    transition: opacity 0.35s ease 0.06s, transform 0.35s var(--ease-out-expo) 0.06s;
+    transition: max-height 0.4s ease, opacity 0.35s ease 0.06s, transform 0.35s var(--ease-out-expo) 0.06s;
 }
 
 .bento-card:hover .bento-card-meta {
+    max-height: 30px;
     opacity: 1;
     transform: translateY(0);
+}
+
+.bento-card-stage,
+.bento-card-location {
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.95);
 }
 
 .bento-card-divider {

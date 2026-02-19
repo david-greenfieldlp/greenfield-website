@@ -49,7 +49,7 @@
 .v2-layout {
     height: 100%;
     display: grid;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 80% 20%;
     position: relative;
     z-index: 1;
 }
@@ -82,6 +82,7 @@
 
 .v2-vast-card .bento-card-content { padding: 20px; }
 .v2-vast-card .bento-card-name { font-size: 1.6rem; }
+.v2-vast-card .bento-card-desc { color: rgba(255, 255, 255, 0.92); }
 
 /* Right columns: bento grid */
 .v2-bento-right {
@@ -91,7 +92,8 @@
 
 .v2-bento-grid {
     height: 100%;
-    grid-template-rows: 2fr 1fr !important;
+    grid-template-columns: 2fr 1fr 1fr !important;
+    grid-template-rows: 1fr 1fr !important;
     grid-auto-rows: 1fr !important;
     gap: 10px !important;
 }
@@ -115,19 +117,199 @@
 .v2-bento-grid .bento-card-content { padding: 18px; }
 .v2-bento-grid .bento-card-featured .bento-card-name { font-size: 1.4rem; }
 .v2-bento-grid .bento-card-name { font-size: 1rem; margin-bottom: 4px; }
-.v2-bento-grid .bento-card-desc { font-size: 0.75rem; margin-bottom: 8px; }
+.v2-bento-grid .bento-card-desc { font-size: 0.75rem; margin-bottom: 8px; color: rgba(255, 255, 255, 0.92); }
 .v2-bento-grid .bento-card-meta { font-size: 0.65rem; }
+.v2-bento-grid .bento-card-stage,
+.v2-bento-grid .bento-card-location,
+.v2-vast-card .bento-card-stage,
+.v2-vast-card .bento-card-location { font-weight: 700; color: rgba(255, 255, 255, 0.95); }
 .v2-bento-grid .bento-card-logo-img { width: 36px; height: 36px; border-radius: 10px; }
 .v2-bento-grid .bento-card-tag { font-size: 0.55rem; padding: 4px 10px; }
+
+/* ── Visual styles: gradient overlays, borders, beam, text shadow ── */
+
+/* Targets both the right-grid cards AND the VAST left card */
+.v2-bento-grid .bento-card,
+.v2-vast-card {
+    border: 1px solid rgba(74, 144, 217, 0.18) !important;
+    overflow: hidden;
+    position: relative;
+}
+
+/* No overlay at rest */
+.v2-bento-grid .bento-card-bg-overlay,
+.v2-vast-card .bento-card-bg-overlay {
+    background: transparent !important;
+}
+
+/* Bottom-heavy overlay on hover */
+.v2-bento-grid .bento-card:hover .bento-card-bg-overlay,
+.v2-vast-card:hover .bento-card-bg-overlay {
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        transparent 45%,
+        rgba(0, 10, 31, 0.55) 68%,
+        rgba(0, 10, 31, 0.88) 85%,
+        rgba(0, 10, 31, 0.96) 100%
+    ) !important;
+}
+
+/* AAI special case: slightly stronger overlay */
+.v2-bento-grid .bento-card[data-category="aai"]:hover .bento-card-bg-overlay {
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        transparent 35%,
+        rgba(0, 10, 31, 0.65) 60%,
+        rgba(0, 10, 31, 0.92) 82%,
+        rgba(0, 10, 31, 0.98) 100%
+    ) !important;
+}
+
+/* Subtle text shadow on card names */
+.v2-bento-grid .bento-card-name,
+.v2-vast-card .bento-card-name {
+    text-shadow:
+        0 1px 6px rgba(0, 0, 0, 0.55),
+        0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* Border beam — bright spot travels around card border on hover */
+.v2-bento-grid .bento-card-glow::before,
+.v2-vast-card .bento-card-glow::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 14px;
+    background: conic-gradient(
+        from var(--beam-angle, 0deg),
+        transparent 0deg,
+        transparent 60deg,
+        rgba(74, 144, 217, 0.75) 90deg,
+        rgba(147, 197, 253, 0.9) 100deg,
+        rgba(74, 144, 217, 0.75) 110deg,
+        transparent 140deg,
+        transparent 360deg
+    );
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 1px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 4;
+    transition: opacity 0.2s ease;
+}
+
+.v2-bento-grid .bento-card:hover .bento-card-glow::before,
+.v2-vast-card:hover .bento-card-glow::before {
+    opacity: 1;
+    animation: borderBeamV2 1.2s linear forwards;
+}
+
+@keyframes borderBeamV2 {
+    0%   { --beam-angle: 0deg;   opacity: 1; }
+    80%  { --beam-angle: 360deg; opacity: 1; }
+    100% { --beam-angle: 360deg; opacity: 0; }
+}
+
+/* Bottom-row cards: inherit flex-end from the block below; margin-top: auto redundant */
+.v2-bento-grid .bento-row-four .bento-card-bottom {
+    min-height: 0;
+}
+
+/* ── Name pinned to bottom-left; lifts on hover to reveal desc + meta ── */
+
+/* Top section absolutely positioned so it never pushes the name down */
+.v2-bento-grid .bento-card .bento-card-top {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    right: 18px;
+}
+
+.v2-vast-card .bento-card-top {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+}
+
+/* Desc + meta: collapsed to zero height at rest (still fade-animatable via opacity).
+   This means only the name occupies height in the bottom block. */
+.v2-bento-grid .bento-card .bento-card-desc,
+.v2-vast-card .bento-card-desc {
+    max-height: 0;
+    overflow: hidden;
+    margin-bottom: 0;
+    transition: max-height 0.4s ease, opacity 0.35s ease 0.03s, transform 0.35s cubic-bezier(0.16,1,0.3,1) 0.03s;
+}
+
+.v2-bento-grid .bento-card .bento-card-meta,
+.v2-vast-card .bento-card-meta {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.35s ease 0.06s, transform 0.35s cubic-bezier(0.16,1,0.3,1) 0.06s;
+}
+
+/* On hover: expand desc + meta back to natural height */
+.v2-bento-grid .bento-card:hover .bento-card-desc,
+.v2-vast-card:hover .bento-card-desc {
+    max-height: 60px;
+    margin-bottom: 8px;
+}
+
+.v2-bento-grid .bento-card:hover .bento-card-meta,
+.v2-vast-card:hover .bento-card-meta {
+    max-height: 30px;
+}
+
+/* Content: flex-end so the bottom block always hugs the card bottom */
+.v2-bento-grid .bento-card .bento-card-content,
+.v2-vast-card .bento-card-content {
+    justify-content: flex-end;
+}
+
+/* Name always visible at rest */
+.v2-bento-grid .bento-card .bento-card-name,
+.v2-vast-card .bento-card-name {
+    opacity: 1;
+}
+
+/* Bottom block: sits at bottom at rest, lifts slightly on hover */
+.v2-bento-grid .bento-card .bento-card-bottom,
+.v2-vast-card .bento-card-bottom {
+    transform: translateY(0);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.v2-bento-grid .bento-card:hover .bento-card-bottom,
+.v2-vast-card:hover .bento-card-bottom {
+    transform: translateY(-8px);
+}
+
+/* Crossfade support for rotation */
+.v2-bento-grid .bento-card-bg,
+.v2-vast-card .bento-card-bg {
+    opacity: 1;
+}
+.v2-bento-grid .bento-card-content,
+.v2-vast-card .bento-card-content {
+    opacity: 1;
+}
 
 /* ---------- BOTTOM: Clocks | Sentence | Metrics ---------- */
 .v2-bottom {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     align-items: center;
-    padding: 16px 24px 14px;
+    padding: 0 24px;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
     position: relative;
+    min-height: 0;
 }
 
 /* Clocks — left */
@@ -146,7 +328,7 @@
 
 .v2-sentence-text {
     font-family: var(--font);
-    font-size: clamp(0.85rem, 1.2vw, 1.1rem);
+    font-size: clamp(1rem, 1.6vw, 1.4rem);
     font-weight: 300;
     line-height: 1.6;
     letter-spacing: -0.01em;
