@@ -1374,12 +1374,14 @@ sup { font-size: 0.6em; vertical-align: super; }
     position: absolute;
     left: 0;
     right: 0;
+    top: 0;
     bottom: 0;
     z-index: 500;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    align-content: start;
     gap: 16px;
-    height: 98%;
+    padding-top: 12%;
     margin: 0 40px;
     pointer-events: none;
 }
@@ -1391,7 +1393,7 @@ sup { font-size: 0.6em; vertical-align: super; }
 }
 
 .diagram-modal-inner {
-    position: absolute;
+    position: relative;
     left: 0;
     top: 0;
     right: 0;
@@ -1413,6 +1415,10 @@ sup { font-size: 0.6em; vertical-align: super; }
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+}
+
+.diagram-modal-center {
+    margin-top: -48px;
 }
 
 .diagram-modal-center .diagram-modal-inner {
