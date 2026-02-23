@@ -661,23 +661,30 @@
 
     // ── Inflection diagram interactions ──────────────────
     (function () {
-        var columns = document.querySelectorAll('#approachDiagramColumns .diagram-col');
-        var modals  = document.querySelectorAll('#approachDiagramModals .diagram-modal');
+        var columns        = document.querySelectorAll('#approachDiagramColumns .diagram-col');
+        var modals         = document.querySelectorAll('#approachDiagramModals .diagram-modal');
+        var diagramDesktop = document.getElementById('approachDiagramDesktop');
 
-        // Desktop: hover column → show modal
+        // Default state: center card (Early-Growth Stage, index 1) shown on load
+        function setDefault() {
+            columns.forEach(function (col) {
+                col.classList.toggle('hovered', col.dataset.col === '1');
+            });
+            modals.forEach(function (modal) {
+                modal.classList.toggle('visible', modal.dataset.modal === '1');
+            });
+        }
+
+        // Desktop: hover column → show matching modal
         columns.forEach(function (col) {
             var colIndex = col.dataset.col;
 
             col.addEventListener('mouseenter', function () {
+                columns.forEach(function (c) { c.classList.remove('hovered'); });
                 col.classList.add('hovered');
                 modals.forEach(function (modal) {
                     modal.classList.toggle('visible', modal.dataset.modal === colIndex);
                 });
-            });
-
-            col.addEventListener('mouseleave', function () {
-                col.classList.remove('hovered');
-                modals.forEach(function (modal) { modal.classList.remove('visible'); });
             });
         });
 
@@ -686,17 +693,21 @@
             var modalIndex = modal.dataset.modal;
 
             modal.addEventListener('mouseenter', function () {
+                modals.forEach(function (m) { m.classList.remove('visible'); });
                 modal.classList.add('visible');
                 columns.forEach(function (col) {
                     col.classList.toggle('hovered', col.dataset.col === modalIndex);
                 });
             });
-
-            modal.addEventListener('mouseleave', function () {
-                modal.classList.remove('visible');
-                columns.forEach(function (col) { col.classList.remove('hovered'); });
-            });
         });
+
+        // Restore default when cursor leaves the entire diagram
+        if (diagramDesktop) {
+            diagramDesktop.addEventListener('mouseleave', setDefault);
+        }
+
+        // Initialise with default state on load
+        setDefault();
 
         // Mobile: tab + dot switching
         var mobileTabs   = document.querySelectorAll('#approachDiagramMobile .diagram-mobile-tab');
